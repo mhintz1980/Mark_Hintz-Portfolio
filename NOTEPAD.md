@@ -22,9 +22,27 @@ Track of improvements made each session. Most recent first.
 
 ---
 
+## 2026-03-26 — Image Compression: JPG → WebP
+
+**What:** Converted all 9 remaining JPG images to WebP format, capping max dimension at 1200px.
+
+**Result:**
+- Total image size: **1,308KB → 546KB** (58.2% reduction, ~762KB saved)
+- Notable wins: img_008 (253→98KB), img_014 (290→130KB), img_015 (243→97KB)
+- Updated all image references in `js/scripts.js` and `site/js/scripts.js`
+
+**Files changed:**
+- `assets/images/img_008–img_025.webp` (9 new webp files, 9 old jpg files removed)
+- `js/scripts.js` — all `.jpg"` → `.webp"`
+- `site/js/scripts.js` — all `.jpg"` → `.webp"`
+
+**Tool:** Python PIL (WEBP quality=82, method=6, max dim 1200px LANCZOS resize)
+
+---
+
 ## Plan / Backlog
 
-- [ ] Compress JPG images (img_008, img_013, img_014, img_015, img_020, img_021, img_023, img_024, img_025) — currently ~1.2MB total
+- [x] Compress JPG images — DONE (all converted to WebP)
 - [ ] Add `loading="lazy"` to gallery images in scripts.js renderer
 - [ ] Add `<meta name="description">` tag to index.html for SEO
 - [ ] Minify CSS/JS for production

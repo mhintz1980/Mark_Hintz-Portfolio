@@ -59,7 +59,7 @@ const portfolioData = {
       image: "assets/images/img_006.webp",
       gallery: [
         "assets/images/img_007.webp",
-        "assets/images/img_008.jpg",
+        "assets/images/img_008.webp",
         "assets/images/img_009.webp",
         "assets/images/img_010.webp"
       ]
@@ -70,9 +70,9 @@ const portfolioData = {
       image: "assets/images/img_011.webp",
       gallery: [
         "assets/images/img_012.webp",
-        "assets/images/img_013.jpg",
-        "assets/images/img_014.jpg",
-        "assets/images/img_015.jpg",
+        "assets/images/img_013.webp",
+        "assets/images/img_014.webp",
+        "assets/images/img_015.webp",
         "assets/images/img_016.webp",
         "assets/images/img_017.webp"
       ]
@@ -83,12 +83,12 @@ const portfolioData = {
       image: "assets/images/img_018.webp",
       gallery: [
         "assets/images/img_019.webp",
-        "assets/images/img_020.jpg",
-        "assets/images/img_021.jpg",
+        "assets/images/img_020.webp",
+        "assets/images/img_021.webp",
         "assets/images/img_022.webp",
-        "assets/images/img_023.jpg",
-        "assets/images/img_024.jpg",
-        "assets/images/img_025.jpg",
+        "assets/images/img_023.webp",
+        "assets/images/img_024.webp",
+        "assets/images/img_025.webp",
         "assets/images/img_026.webp",
         "assets/images/img_027.webp",
         "assets/images/img_028.webp"
