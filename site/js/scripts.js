@@ -45,23 +45,23 @@ const portfolioData = {
     {
       title: "PumpTracker (Production Scheduling + Capacity Planning)",
       category: "Internal tool • React/TypeScript • Firebase/Supabase",
-      image: "assets/images/img_001.png",
+      image: "assets/images/img_001.webp",
       gallery: [
-        "assets/images/img_002.png",
-        "assets/images/img_003.png",
-        "assets/images/img_004.png",
-        "assets/images/img_005.png"
+        "assets/images/img_002.webp",
+        "assets/images/img_003.webp",
+        "assets/images/img_004.webp",
+        "assets/images/img_005.webp"
       ]
     },
     {
       title: "Pump Package Design System (Skids, Enclosures, Mounts, Lifting)",
       category: "Mechanical design • SolidWorks • DFM/DFA",
-      image: "assets/images/img_006.png",
+      image: "assets/images/img_006.webp",
       gallery: [
         "assets/images/img_007.webp",
         "assets/images/img_008.jpg",
-        "assets/images/img_009.png",
-        "assets/images/img_010.png"
+        "assets/images/img_009.webp",
+        "assets/images/img_010.webp"
       ]
     },
     {
@@ -69,12 +69,12 @@ const portfolioData = {
       category: "Mechanical design • Planetary gearboxes • Precision assemblies",
       image: "assets/images/img_011.webp",
       gallery: [
-        "assets/images/img_012.png",
+        "assets/images/img_012.webp",
         "assets/images/img_013.jpg",
         "assets/images/img_014.jpg",
         "assets/images/img_015.jpg",
-        "assets/images/img_016.png",
-        "assets/images/img_017.png"
+        "assets/images/img_016.webp",
+        "assets/images/img_017.webp"
       ]
     },
     {
@@ -123,17 +123,17 @@ const portfolioData = {
     {
       title: "Reliability Engineering: Extending Asset Lifecycle from 3 to 5 Years",
       description: "Solving the 'grinding paste' failure mode with tribopolymer materials and predictive IoT monitoring",
-      image: "assets/images/img_029.png"
+      image: "assets/images/img_029.webp"
     },
     {
       title: "Designing the Future of Practice: A Capabilities Deck",
       description: "Comprehensive portfolio demonstrating mechanical design expertise, DFM principles, and process optimization",
-      image: "assets/images/img_030.png"
+      image: "assets/images/img_030.webp"
     },
     {
       title: "Strategic Engineering Hire for Power Tee's Jacksonville Expansion",
       description: "20+ years of mechanical design excellence and AI-driven production innovation - a strategic fit for scaling operations",
-      image: "assets/images/img_031.png"
+      image: "assets/images/img_031.webp"
     }
   ],
 
@@ -161,7 +161,7 @@ const portfolioData = {
 
   // FIXED CTA BUTTONS
   ctaButtons: [
-    { label: "View resume", href: "assets/images/img_032.png", primary: true },
+    { label: "View resume", href: "assets/images/img_032.webp", primary: true },
     { label: "View LinkedIn", href: "https://linkedin.com/in/mark-hintz-builds", primary: false, target: "_blank" }
   ],
 
