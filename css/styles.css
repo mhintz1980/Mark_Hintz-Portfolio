@@ -195,9 +195,11 @@ h3 { font-weight: 500; }
 }
 
 .nav-logo {
+  font-family: var(--font-heading);
   font-weight: 600;
-  font-size: 16px;
-  letter-spacing: -0.02em;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .nav-links {
@@ -249,6 +251,7 @@ h3 { font-weight: 500; }
 
 .hero-title-container {
   margin-bottom: 48px;
+  min-height: 240px; /* Reserve height to prevent layout jump during scramble */
 }
 
 .hero-title-line {
@@ -267,6 +270,7 @@ h3 { font-weight: 500; }
   /* Start visible - let child magnetic-text chars handle the animation */
   opacity: 1;
   transform: translateY(0);
+  display: block;
 }
 
 /* When magnetic-text is applied, don't use the parent animation */
@@ -296,8 +300,9 @@ h3 { font-weight: 500; }
   font-size: 18px;
   font-weight: 400;
   line-height: 1.6;
-  color: rgba(242, 242, 242, 0.7);
+  color: var(--text-primary); /* Brighter for visibility */
   margin: 0;
+  min-height: 1.6em;
 }
 
 .hero-actions {
@@ -1070,15 +1075,7 @@ h3 { font-weight: 500; }
 /* ============================================
    FIXED CTA BUTTONS
    ============================================ */
-.fixed-cta {
-  position: fixed;
-  right: 32px;
-  bottom: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  z-index: 100;
-}
+/* Removed fixed-cta */
 
 .cta-button {
   background: #ffffff;

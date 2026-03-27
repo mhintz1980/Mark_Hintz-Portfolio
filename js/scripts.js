@@ -188,12 +188,6 @@ const portfolioData = {
     }
   ],
 
-  // FIXED CTA BUTTONS
-  ctaButtons: [
-    { label: "View resume", href: "assets/images/resume-preview.png", primary: true },
-    { label: "View LinkedIn", href: "https://linkedin.com/in/mark-hintz-builds", primary: false, target: "_blank" }
-  ],
-
   // FOOTER CREDITS
   footerCredits: [
     "Designed + built by Mark Hintz",
@@ -240,6 +234,12 @@ function scrambleText(el, finalText, duration = 1200) {
   const frames = Math.floor(duration / 16);
   let frame = 0;
 
+  // Set to monospace during scramble to prevent layout jumps
+  const originalFont = el.style.fontFamily;
+  el.style.fontFamily = 'var(--font-mono)';
+  el.style.display = 'inline-block';
+  el.style.minWidth = '1ch'; // Prevent collapse
+
   function update() {
     const progress = frame / frames;
     const lockedChars = Math.floor(progress * finalText.length);
@@ -254,8 +254,12 @@ function scrambleText(el, finalText, duration = 1200) {
     }
     el.textContent = display;
     frame++;
-    if (frame <= frames) requestAnimationFrame(update);
-    else el.textContent = finalText;
+    if (frame <= frames) {
+      requestAnimationFrame(update);
+    } else {
+      el.textContent = finalText;
+      el.style.fontFamily = originalFont; // Restore original font
+    }
   }
   requestAnimationFrame(update);
 }
@@ -549,29 +553,32 @@ function initializePortfolio() {
     
     // Navigation
     const navLogo = document.getElementById('nav-logo');
-    navLogo.textContent = portfolioData.personal.name;
-    
+    if (navLogo) navLogo.textContent = portfolioData.personal.name;
+
     const navLinks = document.getElementById('nav-links');
-    portfolioData.navigation.forEach(link => {
-        const a = document.createElement('a');
-        a.href = link.href;
-        a.className = 'nav-link';
-        a.textContent = link.label;
-        navLinks.appendChild(a);
-    });
-    
+    if (navLinks) {
+        navLinks.innerHTML = '';
+        portfolioData.navigation.forEach(link => {
+            const a = document.createElement('a');
+            a.href = link.href;
+            a.className = 'nav-link';
+            a.textContent = link.label;
+            navLinks.appendChild(a);
+        });
+    }
+
     // Hero section - Super header and two-line title
     const superHeader = document.getElementById('hero-super-header');
     const line1 = document.getElementById('title-line-1');
     const line2 = document.getElementById('title-line-2');
-    
+
     // Super header
-    if (portfolioData.personal.superHeader) {
+    if (superHeader && portfolioData.personal.superHeader) {
         superHeader.textContent = portfolioData.personal.superHeader;
     }
-    
+
     // Check if title is an object (new format) or string (old format)
-    if (typeof portfolioData.personal.title === 'object' && portfolioData.personal.title.line1) {
+    if (line1 && line2 && typeof portfolioData.personal.title === 'object' && portfolioData.personal.title.line1) {
         const finalLine1 = portfolioData.personal.title.line1;
         const finalLine2 = portfolioData.personal.title.line2;
 
@@ -591,44 +598,55 @@ function initializePortfolio() {
         // Ensure magnetic-text class doesn't conflict (clear it)
         line1.classList.remove('magnetic-text-target', 'magnetic-text');
         line2.classList.remove('magnetic-text-target', 'magnetic-text');
-    } else {
+    } else if (line1) {
         // Fallback for old string format
         const fallback1 = portfolioData.personal.title || 'Title Line 1';
         setTimeout(() => { scrambleText(line1, fallback1, 1200); }, 300);
-        setTimeout(() => { scrambleText(line2, 'Title Line 2', 1200); }, 500);
+        if (line2) setTimeout(() => { scrambleText(line2, 'Title Line 2', 1200); }, 500);
         line1.classList.remove('magnetic-text-target', 'magnetic-text');
-        line2.classList.remove('magnetic-text-target', 'magnetic-text');
     }
-    
-    document.getElementById('hero-subtitle').textContent = portfolioData.personal.bio;
-    
+
+    const heroSubtitle = document.getElementById('hero-subtitle');
+    if (heroSubtitle) {
+        heroSubtitle.textContent = portfolioData.personal.bio;
+        heroSubtitle.style.opacity = '1'; // Ensure visible
+    }
+
     const heroActions = document.getElementById('hero-actions');
-    portfolioData.heroActions.forEach((action, idx) => {
-        const a = document.createElement('a');
-        a.href = action.href;
-        a.className = action.primary ? 'hero-link hero-cta-primary' : 'hero-link';
-        a.textContent = action.label;
-        if (action.target) a.target = action.target;
-        heroActions.appendChild(a);
-    });
+    if (heroActions) {
+        heroActions.innerHTML = '';
+        portfolioData.heroActions.forEach((action, idx) => {
+            const a = document.createElement('a');
+            a.href = action.href;
+            a.className = action.primary ? 'hero-link hero-cta-primary' : 'hero-link';
+            a.textContent = action.label;
+            if (action.target) a.target = action.target;
+            heroActions.appendChild(a);
+        });
+    }
 
     // Inject spec block after hero-actions
-    const heroSection = document.querySelector('.hero-section');
-    const specBlock = document.createElement('div');
-    specBlock.className = 'hero-spec-block';
-    specBlock.innerHTML = `
-      <div class="spec-line"><span class="spec-key">&gt; SPEC:</span> <span class="spec-val">Mark Hintz</span></div>
-      <div class="spec-line"><span class="spec-key">&gt; ROLE:</span> <span class="spec-val">Mechanical Designer + Automation Engineer</span></div>
-      <div class="spec-line"><span class="spec-key">&gt; TOL:</span> <span class="spec-val">&#177;0.0005&quot; | 15 YRS | JAX, FL</span></div>
-      <div class="spec-line"><span class="spec-key">&gt; STATUS:</span> <span class="spec-val spec-status available">AVAILABLE FOR WORK</span></div>
-      <div class="spec-line"><span class="spec-key">&gt; STACK:</span> <span class="spec-val">SolidWorks &middot; PDM &middot; Python &middot; AI Tooling</span></div>
-    `;
-    heroActions.insertAdjacentElement('afterend', specBlock);
+    if (heroActions) {
+        // Remove existing if any
+        const existingSpec = document.querySelector('.hero-spec-block');
+        if (existingSpec) existingSpec.remove();
 
-    // Trigger typewriter on spec block after a short delay
-    setTimeout(() => {
-        typewriterBlock(specBlock);
-    }, 800);
+        const specBlock = document.createElement('div');
+        specBlock.className = 'hero-spec-block';
+        specBlock.innerHTML = `
+          <div class="spec-line"><span class="spec-key">&gt; SPEC:</span> <span class="spec-val">Mark Hintz</span></div>
+          <div class="spec-line"><span class="spec-key">&gt; ROLE:</span> <span class="spec-val">Mechanical Designer + Automation Engineer</span></div>
+          <div class="spec-line"><span class="spec-key">&gt; TOL:</span> <span class="spec-val">&#177;0.0005&quot; | 15 YRS | JAX, FL</span></div>
+          <div class="spec-line"><span class="spec-key">&gt; STATUS:</span> <span class="spec-val spec-status available">AVAILABLE FOR WORK</span></div>
+          <div class="spec-line"><span class="spec-key">&gt; STACK:</span> <span class="spec-val">SolidWorks &middot; PDM &middot; Python &middot; AI Tooling</span></div>
+        `;
+        heroActions.insertAdjacentElement('afterend', specBlock);
+
+        // Trigger typewriter on spec block after a short delay
+        setTimeout(() => {
+            typewriterBlock(specBlock);
+        }, 800);
+    }
     
     // About section
     const aboutText = document.getElementById('about-text');
@@ -646,114 +664,124 @@ function initializePortfolio() {
     
     // Projects
     const projectsGrid = document.getElementById('projects-grid');
-    portfolioData.projects.forEach((project, index) => {
-        const card = document.createElement('div');
-        const isFeatured = project.featured === true;
+    if (projectsGrid) {
+        projectsGrid.innerHTML = '';
+        portfolioData.projects.forEach((project, index) => {
+            const card = document.createElement('div');
+            const isFeatured = project.featured === true;
 
-        if (isFeatured) {
-            card.className = 'project-card featured tolerance-zone';
-        } else {
-            card.className = 'project-card';
-        }
+            if (isFeatured) {
+                card.className = 'project-card featured tolerance-zone';
+            } else {
+                card.className = 'project-card';
+            }
 
-        // Build tech tags HTML
-        const tagsHtml = project.tags && project.tags.length > 0
-            ? `<div class="project-tags">${project.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div>`
-            : '';
+            // Build tech tags HTML
+            const tagsHtml = project.tags && project.tags.length > 0
+                ? `<div class="project-tags">${project.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div>`
+                : '';
 
-        // Build outcome HTML
-        const outcomeHtml = project.outcome
-            ? `<div class="project-outcome"><span class="outcome-icon">→</span><span class="outcome-text">${project.outcome}</span></div>`
-            : '';
+            // Build outcome HTML
+            const outcomeHtml = project.outcome
+                ? `<div class="project-outcome"><span class="outcome-icon">→</span><span class="outcome-text">${project.outcome}</span></div>`
+                : '';
 
-        // Toolpath SVG overlay (only on featured)
-        const toolpathHtml = isFeatured ? `
-            <div class="toolpath-overlay">
-              <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" class="toolpath-svg">
-                <path class="toolpath-line" d="M20,20 L380,20 L380,60 L20,60 L20,100 L380,100 L380,140 L20,140 L20,180 L380,180 L380,220 L20,220 L20,260 L380,260"
-                      fill="none" stroke="rgba(62,201,201,0.4)" stroke-width="1.5"
-                      stroke-dasharray="2000" stroke-dashoffset="2000"/>
-              </svg>
-            </div>` : '';
+            // Toolpath SVG overlay (only on featured)
+            const toolpathHtml = isFeatured ? `
+                <div class="toolpath-overlay">
+                  <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" class="toolpath-svg">
+                    <path class="toolpath-line" d="M20,20 L380,20 L380,60 L20,60 L20,100 L380,100 L380,140 L20,140 L20,180 L380,180 L380,220 L20,220 L20,260 L380,260"
+                          fill="none" stroke="rgba(62,201,201,0.4)" stroke-width="1.5"
+                          stroke-dasharray="2000" stroke-dashoffset="2000"/>
+                  </svg>
+                </div>` : '';
 
-        // Tolerance callout HTML (only on featured) — matches existing Sprint 3 CSS
-        const tolCalloutHtml = isFeatured ? `
-            <div class="tol-callout tol-callout-tr">
-              <div class="tol-line tol-line-h"></div>
-              <div class="tol-box">
-                <span>FEATURES: 16</span>
-                <span>SPRINTS: 8</span>
-              </div>
-            </div>
-            <div class="tol-callout tol-callout-bl">
-              <div class="tol-line tol-line-v"></div>
-              <div class="tol-box">
-                <span>STACK: FULL</span>
-                <span>STATUS: LIVE</span>
-              </div>
-            </div>` : '';
-
-        card.innerHTML = `
-            <div class="project-image-wrapper">
-                <img src="${project.image}" alt="${project.title}" class="project-image" loading="lazy">
-                ${toolpathHtml}
-            </div>
-            <div class="project-content">
-                <div class="project-content-top">
-                    <h3 class="project-title">${project.title}</h3>
-                    <p class="project-category">${project.category}</p>
-                    ${tagsHtml}
+            // Tolerance callout HTML (only on featured) — matches existing Sprint 3 CSS
+            const tolCalloutHtml = isFeatured ? `
+                <div class="tol-callout tol-callout-tr">
+                  <div class="tol-line tol-line-h"></div>
+                  <div class="tol-box">
+                    <span>FEATURES: 16</span>
+                    <span>SPRINTS: 8</span>
+                  </div>
                 </div>
-                <div class="project-content-bottom">
-                    ${outcomeHtml}
+                <div class="tol-callout tol-callout-bl">
+                  <div class="tol-line tol-line-v"></div>
+                  <div class="tol-box">
+                    <span>STACK: FULL</span>
+                    <span>STATUS: LIVE</span>
+                  </div>
+                </div>` : '';
+
+            card.innerHTML = `
+                <div class="project-image-wrapper">
+                    <img src="${project.image}" alt="${project.title}" class="project-image" loading="lazy">
+                    ${toolpathHtml}
                 </div>
-            </div>
-            ${tolCalloutHtml}
-        `;
+                <div class="project-content">
+                    <div class="project-content-top">
+                        <h3 class="project-title">${project.title}</h3>
+                        <p class="project-category">${project.category}</p>
+                        ${tagsHtml}
+                    </div>
+                    <div class="project-content-bottom">
+                        ${outcomeHtml}
+                    </div>
+                </div>
+                ${tolCalloutHtml}
+            `;
 
-        if (project.gallery && project.gallery.length > 0) {
-            card.style.cursor = 'pointer';
-            card.addEventListener('click', () => openLightbox(project.gallery, project.title));
-        } else if (project.link && project.link !== '#') {
-            card.style.cursor = 'pointer';
-            card.addEventListener('click', () => window.open(project.link, '_blank'));
-        }
-        projectsGrid.appendChild(card);
-    });
+            if (project.gallery && project.gallery.length > 0) {
+                card.style.cursor = 'pointer';
+                card.addEventListener('click', () => openLightbox(project.gallery, project.title));
+            } else if (project.link && project.link !== '#') {
+                card.style.cursor = 'pointer';
+                card.addEventListener('click', () => window.open(project.link, '_blank'));
+            }
+            projectsGrid.appendChild(card);
+        });
 
-    // Staggered scroll-reveal on project cards
-    document.querySelectorAll('.project-card').forEach((card, i) => {
-        card.style.transitionDelay = `${i * 100}ms`;
-        card.classList.add('reveal-ready');
-    });
+        // Staggered scroll-reveal on project cards
+        document.querySelectorAll('.project-card').forEach((card, i) => {
+            card.style.transitionDelay = `${i * 100}ms`;
+            card.classList.add('reveal-ready');
+        });
+    }
     
     // Services — new card layout (Sprint 5)
     const servicesContent = document.getElementById('services-content');
-    portfolioData.services.forEach((service, i) => {
-        const card = document.createElement('div');
-        card.className = 'service-card reveal-ready';
-        card.style.transitionDelay = `${i * 100}ms`;
+    if (servicesContent) {
+        servicesContent.innerHTML = '';
+        portfolioData.services.forEach((service, i) => {
+            const card = document.createElement('div');
+            card.className = 'service-card reveal-ready';
+            card.style.transitionDelay = `${i * 100}ms`;
 
-        const deliverablesHTML = service.deliverables.map(d =>
-            `<li>${d}</li>`
-        ).join('');
+            const deliverablesHTML = service.deliverables.map(d =>
+                `<li>${d}</li>`
+            ).join('');
 
-        card.innerHTML = `
-            <div>
-                <h3 class="service-title">${service.title}</h3>
-                <p class="service-subtitle">${service.subtitle}</p>
-            </div>
-            <p class="service-description">${service.description}</p>
-            <ul class="service-deliverables">${deliverablesHTML}</ul>
-            <div class="service-rate">${service.rate}</div>
-            <a class="service-cta" href="${service.cta.href}">${service.cta.label}</a>
-        `;
-        servicesContent.appendChild(card);
-    });
+            card.innerHTML = `
+                <div>
+                    <h3 class="service-title">${service.title}</h3>
+                    <p class="service-subtitle">${service.subtitle}</p>
+                </div>
+                <p class="service-description">${service.description}</p>
+                <ul class="service-deliverables">${deliverablesHTML}</ul>
+                <div class="service-rate">${service.rate}</div>
+                <a class="service-cta" href="${service.cta.href}">${service.cta.label}</a>
+            `;
+            servicesContent.appendChild(card);
+        });
+    }
 
     // Inject mid-page conversion banner after services section
     const servicesSection = document.getElementById('services');
     if (servicesSection && servicesSection.parentNode) {
+        // Remove existing if any
+        const existingBanner = document.querySelector('.conversion-banner');
+        if (existingBanner) existingBanner.remove();
+
         const banner = document.createElement('div');
         banner.className = 'conversion-banner';
         banner.innerHTML = `
@@ -773,70 +801,71 @@ function initializePortfolio() {
     
     // Case Studies
     const caseStudiesGrid = document.getElementById('case-studies-grid');
-    portfolioData.caseStudies.forEach(study => {
-        const card = document.createElement('a');
-        card.className = 'case-study-card';
-        card.href = study.link;
-        card.target = '_blank';
-        card.rel = 'noopener noreferrer';
-        card.innerHTML = `
-            <div class="case-study-image-container">
-                <img src="${study.image}" alt="${study.title}" class="case-study-image" loading="lazy" onerror="this.style.display='none'">
-            </div>
-            <div class="case-study-info">
-                <h3 class="case-study-title">${study.title}</h3>
-                <p class="case-study-description">${study.description}</p>
-                <span class="case-study-cta">View Case Study</span>
-            </div>
-        `;
-        caseStudiesGrid.appendChild(card);
-    });
+    if (caseStudiesGrid) {
+        caseStudiesGrid.innerHTML = '';
+        portfolioData.caseStudies.forEach(study => {
+            const card = document.createElement('a');
+            card.className = 'case-study-card';
+            card.href = study.link;
+            card.target = '_blank';
+            card.rel = 'noopener noreferrer';
+            card.innerHTML = `
+                <div class="case-study-image-container">
+                    <img src="${study.image}" alt="${study.title}" class="case-study-image" loading="lazy" onerror="this.style.display='none'">
+                </div>
+                <div class="case-study-info">
+                    <h3 class="case-study-title">${study.title}</h3>
+                    <p class="case-study-description">${study.description}</p>
+                    <span class="case-study-cta">View Case Study</span>
+                </div>
+            `;
+            caseStudiesGrid.appendChild(card);
+        });
+    }
     
     // Testimonials
     const testimonialsGrid = document.getElementById('testimonials-grid');
-    portfolioData.testimonials.forEach(testimonial => {
-        const card = document.createElement('div');
-        card.className = 'testimonial-card';
-        card.innerHTML = `
-            <p class="testimonial-text">${testimonial.text}</p>
-            <div class="testimonial-author">
-                <div class="testimonial-avatar"></div>
-                <div>
-                    <div class="testimonial-name">${testimonial.author}</div>
-                    <div class="testimonial-role">${testimonial.role}</div>
+    if (testimonialsGrid) {
+        testimonialsGrid.innerHTML = '';
+        portfolioData.testimonials.forEach(testimonial => {
+            const card = document.createElement('div');
+            card.className = 'testimonial-card';
+            card.innerHTML = `
+                <p class="testimonial-text">${testimonial.text}</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar"></div>
+                    <div>
+                        <div class="testimonial-name">${testimonial.author}</div>
+                        <div class="testimonial-role">${testimonial.role}</div>
+                    </div>
                 </div>
-            </div>
-        `;
-        testimonialsGrid.appendChild(card);
-    });
+            `;
+            testimonialsGrid.appendChild(card);
+        });
+    }
     
     // Footer
-    document.getElementById('footer-cta').textContent = portfolioData.personal.footerCTA;
+    const footerCta = document.getElementById('footer-cta');
+    if (footerCta) footerCta.textContent = portfolioData.personal.footerCTA;
     
     const footerEmail = document.getElementById('footer-email');
-    footerEmail.href = `mailto:${portfolioData.personal.email}`;
-    footerEmail.textContent = portfolioData.personal.email;
+    if (footerEmail) {
+        footerEmail.href = `mailto:${portfolioData.personal.email}`;
+        footerEmail.textContent = portfolioData.personal.email;
+    }
     
-    document.getElementById('footer-copyright').textContent = portfolioData.personal.copyright;
+    const footerCopyright = document.getElementById('footer-copyright');
+    if (footerCopyright) footerCopyright.textContent = portfolioData.personal.copyright;
     
     const footerCredits = document.getElementById('footer-credits');
-    portfolioData.footerCredits.forEach(credit => {
-        const span = document.createElement('span');
-        span.textContent = credit;
-        footerCredits.appendChild(span);
-    });
-    
-    // Fixed CTA buttons
-    const fixedCTA = document.getElementById('fixed-cta');
-    portfolioData.ctaButtons.forEach(button => {
-        const a = document.createElement('a');
-        a.href = button.href;
-        a.className = button.primary ? 'cta-button' : 'cta-button cta-button-secondary';
-        a.textContent = button.label;
-        if (button.download) a.download = '';
-        if (button.target) a.target = button.target;
-        fixedCTA.appendChild(a);
-    });
+    if (footerCredits) {
+        footerCredits.innerHTML = '';
+        portfolioData.footerCredits.forEach(credit => {
+            const span = document.createElement('span');
+            span.textContent = credit;
+            footerCredits.appendChild(span);
+        });
+    }
 }
 
 // ============================================
@@ -1078,5 +1107,3 @@ function setupTiltEffect() {
         });
     });
 }
-
-    
