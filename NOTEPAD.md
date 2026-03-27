@@ -4,6 +4,23 @@ Track of improvements made each session. Most recent first.
 
 ---
 
+## 2026-03-27 — Final Asset Optimization: Remaining PNG/JPG to WebP
+
+**What:** Converted the last batch of case study and project images (24 files) from PNG/JPG to WebP.
+
+**Result:**
+- Total asset size reduction: **5.2MB → 3.2MB** (38% reduction, ~2MB saved)
+- All project assets now use the WebP standard.
+- Updated all remaining image references in `js/scripts.js`.
+
+**Files changed:**
+- `assets/images/*.webp` (24 new webp files, old png/jpg files removed)
+- `js/scripts.js` — all remaining `.png"` and `.jpg"` references updated to `.webp"`
+
+**Tool:** Python PIL (WEBP quality=82, method=6, max dim 1200px LANCZOS resize)
+
+---
+
 ## 2026-03-26 — Image Compression: PNG → WebP
 
 **What:** Converted all 15 PNG images to WebP format, capping max dimension at 1200px.
