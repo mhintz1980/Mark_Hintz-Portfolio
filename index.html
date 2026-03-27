@@ -2,38 +2,96 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta name="description" content="Mark Hintz — Mechanical designer and automation engineer specializing in SolidWorks, AI-driven tooling, and industrial system design. Based in Jacksonville, FL." />
-    <!-- Open Graph / Social Sharing -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#080A0E" />
+    <meta
+      name="description"
+      content="Mark Hintz — mechanical designer and automation engineer specializing in SolidWorks, CAD automation, AI tooling, and industrial system design. Based in Jacksonville, FL."
+    />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://markhintz.com/" />
+
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Mark Hintz Portfolio" />
+    <meta property="og:url" content="https://markhintz.com/" />
     <meta property="og:title" content="Mark Hintz — Mechanical Designer & Automation Engineer" />
-    <meta property="og:description" content="Mechanical designer and automation engineer specializing in SolidWorks, AI-driven tooling, and industrial system design. Based in Jacksonville, FL." />
-    <meta property="og:image" content="assets/images/pump-package-hero.webp" />
+    <meta
+      property="og:description"
+      content="Mechanical design, CAD automation, AI-driven tooling, and industrial systems — built by someone who understands both the shop floor and the software stack."
+    />
+    <meta property="og:image" content="https://markhintz.com/assets/images/pump-package-hero.webp" />
+    <meta property="og:image:alt" content="Industrial pump package designed by Mark Hintz" />
+
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Mark Hintz — Mechanical Designer & Automation Engineer" />
-    <meta name="twitter:description" content="Mechanical designer and automation engineer specializing in SolidWorks, AI-driven tooling, and industrial system design. Based in Jacksonville, FL." />
-    <meta name="twitter:image" content="assets/images/pump-package-hero.webp" />
+    <meta
+      name="twitter:description"
+      content="Mechanical design, CAD automation, AI-driven tooling, and industrial systems — built by someone who understands both the shop floor and the software stack."
+    />
+    <meta name="twitter:image" content="https://markhintz.com/assets/images/pump-package-hero.webp" />
+
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-    <title id="page-title">Portfolio</title>
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="apple-touch-icon" href="assets/favicon.svg" />
+
+    <title id="page-title">Mark Hintz — Mechanical Designer & Automation Engineer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    
-    
-  
-<link rel="stylesheet" href="css/styles.min.css">
-</head>
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Mark Hintz",
+        "jobTitle": "Mechanical Designer & Automation Engineer",
+        "url": "https://markhintz.com/",
+        "image": "https://markhintz.com/assets/images/profile.webp",
+        "email": "mailto:markworks.dev@gmail.com",
+        "telephone": "+1-904-862-1945",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Jacksonville",
+          "addressRegion": "FL",
+          "addressCountry": "US"
+        },
+        "sameAs": [
+          "https://linkedin.com/in/mark-hintz-builds"
+        ],
+        "knowsAbout": [
+          "SolidWorks",
+          "CAD Automation",
+          "AI Tooling",
+          "DFM",
+          "GD&T",
+          "Industrial Design"
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Mark Hintz Portfolio",
+        "url": "https://markhintz.com/",
+        "description": "Portfolio for Mark Hintz, mechanical designer and automation engineer."
+      }
+    </script>
+  </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
     <div class="bg-noise"></div>
-    <div class="bg-glows">
+    <div class="bg-glows" aria-hidden="true">
       <div class="glow-blob glow-blob-1 parallax-layer parallax-layer-1"></div>
       <div class="glow-blob glow-blob-2 parallax-layer parallax-layer-2"></div>
       <div class="glow-blob glow-blob-3 parallax-layer parallax-layer-3"></div>
     </div>
-    <div class="grid-overlay">
+    <div class="grid-overlay" aria-hidden="true">
       <div class="grid-container">
         <div class="grid-line"></div>
         <div class="grid-line"></div>
@@ -49,167 +107,215 @@
         <div class="grid-line"></div>
       </div>
     </div>
-    <nav class="floating-nav">
-      <div class="nav-logo" id="nav-logo"></div>
+
+    <nav class="floating-nav" aria-label="Primary navigation">
+      <a class="nav-logo" id="nav-logo" href="#main-content" aria-label="Go to top"></a>
       <div class="nav-links" id="nav-links"></div>
     </nav>
-    <button class="sticky-cta" aria-label="Contact Mark">Let's Talk Work</button>
+
+    <button class="sticky-cta" type="button" aria-label="Scroll to contact form">
+      Let's Talk Work
+    </button>
+
     <div class="content-wrapper">
-      <section class="hero-section">
-        <div class="hero-super-header" id="hero-super-header"></div>
-        <div class="hero-title-container">
-          <div class="reveal-mask">
-            <h1 class="hero-title-line magnetic-text-target" id="title-line-1"></h1>
-          </div>
-          <div class="reveal-mask">
-            <h1 class="hero-title-line magnetic-text-target" id="title-line-2"></h1>
-          </div>
-        </div>
-        <div class="hero-description-box">
-          <p class="hero-subtitle" id="hero-subtitle"></p>
-        </div>
-        <div class="hero-actions" id="hero-actions"></div>
-      </section>
-      <section class="about-section" id="about">
-        <div class="reveal-mask">
-          <h2 class="section-title reveal-text">About</h2>
-        </div>
-        <div class="about-content">
-          <div class="about-bio-col">
-            <p class="about-text" id="about-text"></p>
-            <blockquote class="about-testimonial">
-              <p>"Mark bridges the gap between the shop floor and digital automation in a way that's genuinely rare. He understands both sides."</p>
-              <cite>— Engineering Context, Jacksonville FL</cite>
-            </blockquote>
-          </div>
-          <div class="about-spec-col">
-            <div class="about-spec-card tolerance-zone" id="about-spec-card">
-              <div class="spec-card-row">
-                <span class="spec-card-label">EXPERIENCE</span>
-                <span class="spec-card-value">15+ Years</span>
-              </div>
-              <div class="spec-card-row">
-                <span class="spec-card-label">MACHINES</span>
-                <span class="spec-card-value">7-Axis Mill-Turn / 5th-Axis HMC / CMM</span>
-              </div>
-              <div class="spec-card-row">
-                <span class="spec-card-label">CAD</span>
-                <span class="spec-card-value">SolidWorks (Advanced) / PDM Vault</span>
-              </div>
-              <div class="spec-card-row">
-                <span class="spec-card-label">AUTOMATION</span>
-                <span class="spec-card-value">Python / SolidWorks API / AI Tooling</span>
-              </div>
-              <div class="spec-card-row">
-                <span class="spec-card-label">CURRENT</span>
-                <span class="spec-card-value">Fabrication / Sheet Metal / Laser</span>
-              </div>
-              <div class="spec-card-row">
-                <span class="spec-card-label">AVAILABILITY</span>
-                <span class="spec-card-value available">OPEN TO PROJECTS</span>
-              </div>
-              <!-- Tolerance callouts (desktop only) -->
-              <div class="tol-callout tol-callout-tr">
-                <div class="tol-line tol-line-h"></div>
-                <div class="tol-box">
-                  <span>⌀ 0.001" TIR</span>
-                  <span>⊕ ±0.0005 [REF]</span>
-                </div>
-              </div>
-              <div class="tol-callout tol-callout-bl">
-                <div class="tol-line tol-line-v"></div>
-                <div class="tol-box">
-                  <span>15 YRS EXP</span>
-                  <span>JAX, FL [LOC]</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="projects-section" id="projects">
-        <div class="reveal-mask">
-          <h2 class="section-title reveal-text">Projects</h2>
-        </div>
-        <div class="projects-grid" id="projects-grid"></div>
-      </section>
-      <section class="services-section" id="services">
-        <div class="reveal-mask">
-          <h2 class="section-title reveal-text">Services</h2>
-        </div>
-        <div class="services-grid" id="services-content"></div>
-      </section>
-      <section class="case-studies-section" id="case-studies">
-        <div class="reveal-mask">
-          <h2 class="section-title reveal-text">Case Studies</h2>
-        </div>
-        <div class="case-studies-grid" id="case-studies-grid"></div>
-      </section>
-      <section class="testimonials-section">
-        <div class="reveal-mask">
-          <h2 class="section-title reveal-text">Testimonials</h2>
-        </div>
-        <div class="testimonials-grid" id="testimonials-grid"></div>
-      </section>
-      <!-- Skills Ticker Section -->
-      <section class="ticker-section">
-        <div class="ticker-wrapper">
-          <div class="ticker-track" id="ticker-track"></div>
-        </div>
-      </section>
-      <footer class="footer-section" id="contact">
-        <div class="contact-container">
-          <div class="contact-info">
+      <main id="main-content">
+        <section class="hero-section" aria-labelledby="title-line-1">
+          <div class="hero-super-header" id="hero-super-header"></div>
+          <div class="hero-title-container">
             <div class="reveal-mask">
-              <h2 class="contact-title reveal-text">Ready to automate?</h2>
+              <h1 class="hero-title-line magnetic-text-target" id="title-line-1"></h1>
             </div>
-            <p class="contact-description">Currently accepting freelance projects for CAD automation, AI integration, and design review.</p>
-            
-            <div class="contact-details-card tolerance-zone">
-              <div class="detail-row">
-                <span class="detail-label">EMAIL</span>
-                <a href="mailto:markworks.dev@gmail.com" class="detail-value" id="copy-email">markworks.dev@gmail.com</a>
-              </div>
-              <div class="detail-row">
-                <span class="detail-label">LINKEDIN</span>
-                <a href="https://linkedin.com/in/mark-hintz-builds" target="_blank" class="detail-value">mark-hintz-builds</a>
-              </div>
-              <div class="detail-row">
-                <span class="detail-label">LOCATION</span>
-                <span class="detail-value">Jacksonville, FL [EST]</span>
-              </div>
-              <div class="detail-row">
-                <span class="detail-label">AVAILABILITY</span>
-                <span class="detail-value available">IMMEDIATE START</span>
-              </div>
-              
-              <!-- Tolerance callout for contact card -->
-              <div class="tol-callout tol-callout-tr">
-                <div class="tol-line tol-line-h"></div>
-                <div class="tol-box"><span>RESPONSE: &lt; 24H</span></div>
+            <div class="reveal-mask hero-title-offset">
+              <h1 class="hero-title-line magnetic-text-target" id="title-line-2"></h1>
+            </div>
+          </div>
+          <div class="hero-description-box">
+            <p class="hero-subtitle" id="hero-subtitle"></p>
+          </div>
+          <div class="hero-actions" id="hero-actions"></div>
+        </section>
+
+        <section class="about-section" id="about" aria-labelledby="about-heading">
+          <div class="reveal-mask">
+            <h2 class="section-title reveal-text" id="about-heading">About</h2>
+          </div>
+          <div class="about-content">
+            <div class="about-bio-col">
+              <p class="about-text" id="about-text"></p>
+              <blockquote class="about-testimonial">
+                <p>
+                  "It's rare to find a designer who understands the constraints of a 5-axis mill and the realities of the assembly line. Mark designs parts that are easy to machine and foolproof to assemble."
+                </p>
+                <cite>— Darrin Phipps, President, Black Creek Precision</cite>
+              </blockquote>
+            </div>
+            <div class="about-spec-col">
+              <div class="about-spec-card tolerance-zone" id="about-spec-card">
+                <div class="spec-card-row">
+                  <span class="spec-card-label">EXPERIENCE</span>
+                  <span class="spec-card-value">15+ Years</span>
+                </div>
+                <div class="spec-card-row">
+                  <span class="spec-card-label">MACHINES</span>
+                  <span class="spec-card-value">7-Axis Mill-Turn / 5th-Axis HMC / CMM</span>
+                </div>
+                <div class="spec-card-row">
+                  <span class="spec-card-label">CAD</span>
+                  <span class="spec-card-value">SolidWorks / PDM Vault / DFM</span>
+                </div>
+                <div class="spec-card-row">
+                  <span class="spec-card-label">AUTOMATION</span>
+                  <span class="spec-card-value">Python / API Workflows / AI Tooling</span>
+                </div>
+                <div class="spec-card-row">
+                  <span class="spec-card-label">LOCATION</span>
+                  <span class="spec-card-value">Jacksonville, FL</span>
+                </div>
+                <div class="spec-card-row">
+                  <span class="spec-card-label">STATUS</span>
+                  <span class="spec-card-value available">AVAILABLE FOR CONTRACT WORK</span>
+                </div>
+                <div class="tol-callout tol-callout-tr">
+                  <div class="tol-line tol-line-h"></div>
+                  <div class="tol-box">
+                    <span>⌀ 0.001&quot; TIR</span>
+                    <span>⊕ ±0.0005 [REF]</span>
+                  </div>
+                </div>
+                <div class="tol-callout tol-callout-bl">
+                  <div class="tol-line tol-line-v"></div>
+                  <div class="tol-box">
+                    <span>15 YRS EXP</span>
+                    <span>JAX, FL [LOC]</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          
-          <div class="contact-action-box">
-            <div class="inquiry-panel">
-              <h3 class="inquiry-title">Start a Technical Inquiry</h3>
-              <p class="inquiry-sub">Click below to open your mail client with a project template.</p>
-              <a href="mailto:markworks.dev@gmail.com?subject=Technical Inquiry - [Project Name]&body=Hi Mark,%0D%0AI'm reaching out regarding..." class="large-contact-button">
-                Open Project Template →
-              </a>
-              <div class="copy-hint">Or click the email address to copy to clipboard.</div>
+        </section>
+
+        <section class="projects-section" id="projects" aria-labelledby="projects-heading">
+          <div class="reveal-mask">
+            <h2 class="section-title reveal-text" id="projects-heading">Projects</h2>
+          </div>
+          <div class="projects-grid" id="projects-grid"></div>
+        </section>
+
+        <section class="services-section" id="services" aria-labelledby="services-heading">
+          <div class="reveal-mask">
+            <h2 class="section-title reveal-text" id="services-heading">Services</h2>
+          </div>
+          <div class="services-grid" id="services-content"></div>
+        </section>
+
+        <section class="case-studies-section" id="case-studies" aria-labelledby="case-studies-heading">
+          <div class="reveal-mask">
+            <h2 class="section-title reveal-text" id="case-studies-heading">Case Studies</h2>
+          </div>
+          <div class="case-studies-grid" id="case-studies-grid"></div>
+        </section>
+
+        <section class="testimonials-section" aria-labelledby="testimonials-heading">
+          <div class="reveal-mask">
+            <h2 class="section-title reveal-text" id="testimonials-heading">Testimonials</h2>
+          </div>
+          <div class="testimonials-grid" id="testimonials-grid"></div>
+        </section>
+
+        <section class="ticker-section" aria-label="Skills and specialties">
+          <div class="ticker-wrapper">
+            <div class="ticker-track" id="ticker-track"></div>
+          </div>
+        </section>
+
+        <section class="contact-section" id="contact" aria-labelledby="contact-heading">
+          <div class="contact-container">
+            <div class="contact-info">
+              <div class="availability-badge" aria-live="polite">
+                <span class="availability-dot"></span>
+                Currently available for contract work
+              </div>
+              <div class="reveal-mask">
+                <h2 class="contact-title reveal-text" id="contact-heading">What are you building?</h2>
+              </div>
+              <p class="contact-description">
+                If you need CAD design that survives the shop floor, SolidWorks automation that saves real time,
+                or practical AI tooling for engineering workflows, let’s talk.
+              </p>
+
+              <div class="contact-details-card tolerance-zone">
+                <div class="detail-row">
+                  <span class="detail-label">EMAIL</span>
+                  <a href="mailto:markworks.dev@gmail.com" class="detail-value" id="copy-email">markworks.dev@gmail.com</a>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">PHONE</span>
+                  <a href="tel:+19048621945" class="detail-value" id="contact-phone">(904) 862-1945</a>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">LINKEDIN</span>
+                  <a href="https://linkedin.com/in/mark-hintz-builds" target="_blank" rel="noopener noreferrer" class="detail-value">mark-hintz-builds</a>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">LOCATION</span>
+                  <span class="detail-value">Jacksonville, FL [EST]</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">RESPONSE</span>
+                  <span class="detail-value">Usually within 24 hours</span>
+                </div>
+                <div class="tol-callout tol-callout-tr">
+                  <div class="tol-line tol-line-h"></div>
+                  <div class="tol-box"><span>RESPONSE: &lt; 24H</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-action-box">
+              <form class="contact-form inquiry-panel" id="contact-form">
+                <h3 class="inquiry-title">Start a Technical Inquiry</h3>
+                <p class="inquiry-sub">This builds a pre-filled email so you can send project details fast.</p>
+
+                <div class="form-field">
+                  <label for="project-type">What do you need?</label>
+                  <select id="project-type" name="projectType" required>
+                    <option value="">Select one</option>
+                    <option value="CAD Design">CAD Design</option>
+                    <option value="Automation">Automation</option>
+                    <option value="AI Integration">AI Integration</option>
+                    <option value="Design Review / DFM">Design Review / DFM</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div class="form-field">
+                  <label for="project-summary">Briefly describe your project</label>
+                  <textarea id="project-summary" name="projectSummary" rows="5" placeholder="Scope, timeline, constraints, machine environment, current pain points..." required></textarea>
+                </div>
+
+                <div class="form-field">
+                  <label for="contact-method">Best way to reach you</label>
+                  <input id="contact-method" name="contactMethod" type="email" inputmode="email" placeholder="you@company.com" required />
+                </div>
+
+                <button class="large-contact-button" type="submit">Open Project Template →</button>
+                <p class="copy-hint">Prefer direct contact? Click the email above to copy it, or tap the phone number.</p>
+              </form>
             </div>
           </div>
-        </div>
-        
+        </section>
+      </main>
+
+      <footer class="footer-section">
+        <div class="site-footer-cta">Come on. Let’s build something cool together.</div>
         <div class="footer-bottom">
           <div class="footer-copyright" id="footer-copyright"></div>
           <div class="footer-credits" id="footer-credits"></div>
         </div>
       </footer>
     </div>
-    <div class="lightbox" id="lightbox">
+
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Project gallery">
       <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">×</button>
       <button class="lightbox-prev" id="lightbox-prev" aria-label="Previous image">❮</button>
       <button class="lightbox-next" id="lightbox-next" aria-label="Next image">❯</button>
@@ -218,11 +324,7 @@
       </div>
       <div class="lightbox-counter" id="lightbox-counter"></div>
     </div>
-    </div>
-    
-    
-  
 
-<script src="js/scripts.min.js"></script>
-</body>
+    <script src="js/scripts.js"></script>
+  </body>
 </html>
