@@ -151,17 +151,29 @@ const portfolioData = {
   caseStudies: [
     {
       title: "Reliability Engineering: Extending Asset Lifecycle from 3 to 5 Years",
-      description: "Solving the 'grinding paste' failure mode with tribopolymer materials and predictive IoT monitoring",
+      summary: { 
+        problem: "Grinding paste failure mode", 
+        solution: "Tribopolymer + IoT monitoring", 
+        result: "+2 years asset life" 
+      },
       image: "assets/images/case-study-asset-lifecycle.webp"
     },
     {
       title: "Designing the Future of Practice: A Capabilities Deck",
-      description: "Comprehensive portfolio demonstrating mechanical design expertise, DFM principles, and process optimization",
+      summary: { 
+        problem: "Generic design perception", 
+        solution: "Custom engineering-first framework", 
+        result: "3 new high-value leads" 
+      },
       image: "assets/images/case-study-capabilities-deck.webp"
     },
     {
       title: "Strategic Engineering Hire for Power Tee's Jacksonville Expansion",
-      description: "20+ years of mechanical design excellence and AI-driven production innovation - a strategic fit for scaling operations",
+      summary: { 
+        problem: "Lack of technical automation", 
+        solution: "AI-driven production stack", 
+        result: "Immediate operational scale" 
+      },
       image: "assets/images/case-study-power-tee.webp"
     }
   ],
@@ -172,19 +184,22 @@ const portfolioData = {
       text:
         "Mark is the only designer I know who models a gearbox, then actually builds it and tests it on the torque guns himself. And while he doesn't program the twin turret mill-turn centers, he designs parts that account for the toolpaths and setups we need. He understands the machining strategy before he even draws the first line.",
       author: "Kevin B.",
-      role: "Head CNC Programmer, STS"
+      role: "Head CNC Programmer, STS",
+      score: "98/100"
     },
     {
       text:
         "Mark understands that a tight tolerance on a print costs money. Because he's inspected these parts himself, he applies GD&T that strictly controls the critical geometry but leaves the rest open for speed. He balances precision with production.",
       author: "Lisa Fullem",
-      role: "Quality Assurance Lead, STS"
+      role: "Quality Assurance Lead, STS",
+      score: "100/100"
     },
     {
       text:
         "It's rare to find a designer who understands the constraints of a 5-axis mill and the realities of the assembly line. Mark designs parts that are easy to machine and foolproof to assemble. He's run the machines, built the gearboxes, and tested the product. That experience is visible in every drawing he releases.",
       author: "Darrin Phipps",
-      role: "President, Black Creek Precision"
+      role: "President, Black Creek Precision",
+      score: "100/100"
     }
   ],
 
@@ -803,20 +818,23 @@ function initializePortfolio() {
     const caseStudiesGrid = document.getElementById('case-studies-grid');
     if (caseStudiesGrid) {
         caseStudiesGrid.innerHTML = '';
-        portfolioData.caseStudies.forEach(study => {
-            const card = document.createElement('a');
-            card.className = 'case-study-card';
-            card.href = study.link;
-            card.target = '_blank';
-            card.rel = 'noopener noreferrer';
+        portfolioData.caseStudies.forEach((study, i) => {
+            const card = document.createElement('div');
+            card.className = 'case-study-card reveal-ready';
+            card.style.transitionDelay = `${i * 120}ms`;
             card.innerHTML = `
                 <div class="case-study-image-container">
                     <img src="${study.image}" alt="${study.title}" class="case-study-image" loading="lazy" onerror="this.style.display='none'">
+                    <div class="blueprint-overlay"></div>
                 </div>
                 <div class="case-study-info">
                     <h3 class="case-study-title">${study.title}</h3>
-                    <p class="case-study-description">${study.description}</p>
-                    <span class="case-study-cta">View Case Study</span>
+                    <div class="case-study-summary">
+                        <div class="summary-line"><span class="label">PRB:</span> <span>${study.summary.problem}</span></div>
+                        <div class="summary-line"><span class="label">SOL:</span> <span>${study.summary.solution}</span></div>
+                        <div class="summary-line"><span class="label">RES:</span> <span>${study.summary.result}</span></div>
+                    </div>
+                    <span class="case-study-cta">View Report →</span>
                 </div>
             `;
             caseStudiesGrid.appendChild(card);
@@ -827,10 +845,12 @@ function initializePortfolio() {
     const testimonialsGrid = document.getElementById('testimonials-grid');
     if (testimonialsGrid) {
         testimonialsGrid.innerHTML = '';
-        portfolioData.testimonials.forEach(testimonial => {
+        portfolioData.testimonials.forEach((testimonial, i) => {
             const card = document.createElement('div');
-            card.className = 'testimonial-card';
+            card.className = 'testimonial-card reveal-ready';
+            card.style.transitionDelay = `${i * 150}ms`;
             card.innerHTML = `
+                <div class="quality-score">[ QUALITY SCORE: ${testimonial.score} ]</div>
                 <p class="testimonial-text">${testimonial.text}</p>
                 <div class="testimonial-author">
                     <div class="testimonial-avatar"></div>
