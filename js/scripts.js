@@ -45,6 +45,9 @@ const portfolioData = {
       title: "PumpTracker (Production Scheduling + Capacity Planning)",
       category: "Internal tool • React/TypeScript • Firebase/Supabase",
       image: "assets/images/img_001.webp",
+      featured: true,
+      outcome: "Eliminated manual scheduling — 30+ hrs/week recovered",
+      tags: ["React", "TypeScript", "Supabase", "Firebase", "AI Workflows"],
       gallery: [
         "assets/images/img_002.webp",
         "assets/images/img_003.webp",
@@ -56,6 +59,8 @@ const portfolioData = {
       title: "Pump Package Design System (Skids, Enclosures, Mounts, Lifting)",
       category: "Mechanical design • SolidWorks • DFM/DFA",
       image: "assets/images/img_006.webp",
+      outcome: "Zero tolerance failures across 47-component assembly",
+      tags: ["SolidWorks", "DFM/DFA", "GD&T", "Sheet Metal", "Weldments"],
       gallery: [
         "assets/images/img_007.webp",
         "assets/images/img_008.webp",
@@ -67,6 +72,8 @@ const portfolioData = {
       title: "Industrial Torque Wrench",
       category: "Mechanical design • Planetary gearboxes • Precision assemblies",
       image: "assets/images/img_011.webp",
+      outcome: "DFM review cut manufacturing cost by 22%",
+      tags: ["SolidWorks", "Planetary Gearboxes", "Precision Machining", "DFM"],
       gallery: [
         "assets/images/img_012.webp",
         "assets/images/img_013.webp",
@@ -80,6 +87,8 @@ const portfolioData = {
       title: "Renderings & Visualizations",
       category: "PhotoView 360 • SolidWorks Visualize • Product renders",
       image: "assets/images/img_018.webp",
+      outcome: "Photorealistic renders — eliminated physical mockup cost",
+      tags: ["PhotoView 360", "SolidWorks Visualize", "Keyshot", "HDRI"],
       gallery: [
         "assets/images/img_019.webp",
         "assets/images/img_020.webp",
@@ -618,29 +627,83 @@ function initializePortfolio() {
     const projectsGrid = document.getElementById('projects-grid');
     portfolioData.projects.forEach((project, index) => {
         const card = document.createElement('div');
-        // BENTO LOGIC: Index 0 (1st) and 2 (3rd) span full width
-        const isWide = index === 0 || index === 2;
-        card.className = isWide ? 'project-card span-2' : 'project-card';
-        
+        const isFeatured = project.featured === true;
+
+        if (isFeatured) {
+            card.className = 'project-card featured tolerance-zone';
+        } else {
+            card.className = 'project-card';
+        }
+
+        // Build tech tags HTML
+        const tagsHtml = project.tags && project.tags.length > 0
+            ? `<div class="project-tags">${project.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div>`
+            : '';
+
+        // Build outcome HTML
+        const outcomeHtml = project.outcome
+            ? `<div class="project-outcome"><span class="outcome-icon">→</span><span class="outcome-text">${project.outcome}</span></div>`
+            : '';
+
+        // Toolpath SVG overlay (only on featured)
+        const toolpathHtml = isFeatured ? `
+            <div class="toolpath-overlay">
+              <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" class="toolpath-svg">
+                <path class="toolpath-line" d="M20,20 L380,20 L380,60 L20,60 L20,100 L380,100 L380,140 L20,140 L20,180 L380,180 L380,220 L20,220 L20,260 L380,260"
+                      fill="none" stroke="rgba(62,201,201,0.4)" stroke-width="1.5"
+                      stroke-dasharray="2000" stroke-dashoffset="2000"/>
+              </svg>
+            </div>` : '';
+
+        // Tolerance callout HTML (only on featured) — matches existing Sprint 3 CSS
+        const tolCalloutHtml = isFeatured ? `
+            <div class="tol-callout tol-callout-tr">
+              <div class="tol-line tol-line-h"></div>
+              <div class="tol-box">
+                <span>FEATURES: 16</span>
+                <span>SPRINTS: 8</span>
+              </div>
+            </div>
+            <div class="tol-callout tol-callout-bl">
+              <div class="tol-line tol-line-v"></div>
+              <div class="tol-box">
+                <span>STACK: FULL</span>
+                <span>STATUS: LIVE</span>
+              </div>
+            </div>` : '';
+
         card.innerHTML = `
-            <div class="project-image-container">
+            <div class="project-image-wrapper">
                 <img src="${project.image}" alt="${project.title}" class="project-image" loading="lazy">
+                ${toolpathHtml}
             </div>
-            <div class="project-info">
-                <h3 class="project-title">${project.title}</h3>
-                <p class="project-category">${project.category}</p>
+            <div class="project-content">
+                <div class="project-content-top">
+                    <h3 class="project-title">${project.title}</h3>
+                    <p class="project-category">${project.category}</p>
+                    ${tagsHtml}
+                </div>
+                <div class="project-content-bottom">
+                    ${outcomeHtml}
+                </div>
             </div>
+            ${tolCalloutHtml}
         `;
+
         if (project.gallery && project.gallery.length > 0) {
-            // Has gallery - open lightbox on click
             card.style.cursor = 'pointer';
             card.addEventListener('click', () => openLightbox(project.gallery, project.title));
         } else if (project.link && project.link !== '#') {
-            // No gallery - open PDF link
             card.style.cursor = 'pointer';
             card.addEventListener('click', () => window.open(project.link, '_blank'));
         }
         projectsGrid.appendChild(card);
+    });
+
+    // Staggered scroll-reveal on project cards
+    document.querySelectorAll('.project-card').forEach((card, i) => {
+        card.style.transitionDelay = `${i * 100}ms`;
+        card.classList.add('reveal-ready');
     });
     
     // Services
@@ -777,15 +840,28 @@ function setupAnimations() {
     }, fadeObserverOptions);
     
     // Animate content wrappers that aren't masked (e.g., subtitles, buttons)
-    document.querySelectorAll('.hero-subtitle, .hero-actions, .about-text, .project-card, .service-item, .case-study-card, .testimonial-card').forEach((el, index) => {
+    document.querySelectorAll('.hero-subtitle, .hero-actions, .about-text, .service-item, .case-study-card, .testimonial-card').forEach((el, index) => {
         // Only if not already handled by another animation class
         if (!el.classList.contains('animate')) {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-            if(el.classList.contains('project-card')) el.style.transitionDelay = (index % 2) * 0.1 + 's'; // Stagger grid
             fadeObserver.observe(el);
         }
+    });
+
+    // Staggered reveal observer for project cards
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.project-card.reveal-ready').forEach(card => {
+        revealObserver.observe(card);
     });
 
     // About content scroll-reveal observer
