@@ -13,7 +13,7 @@ const portfolioData = {
       line1: "Engineering Precision.",
       line2: "Automated Logic."
     },
-    bio: "Bridging the gap between SolidWorks design and high-efficiency production through AI-driven custom tooling.",
+    bio: "I automate the work that shouldn't be manual.",
     about:
       "Mechanical designer and modern toolmaker with experience in diesel-powered industrial pump systems, sound-attenuated enclosures, firearms and related accessories, and the design/development of planetary reduction gearboxes that power industrial tooling. I work at the intersection of hardware and software: designing real-world equipment in SolidWorks, supporting machine shops, fabrication, and assembly—while building AI-powered tools that reduce friction in engineering, documentation, and troubleshooting. I'm especially interested in roles that value practical, field-ready design plus smarter internal tools and workflows.",
     location: "Jacksonville, FL",
@@ -35,8 +35,7 @@ const portfolioData = {
 
   // HERO ACTIONS
   heroActions: [
-    { label: "View resume", href: "assets/images/img_000.webp", target: "_blank" },
-    { label: "Email me", href: "mailto:markworks.dev@gmail.com" },
+    { label: "Let's Talk Work", href: "mailto:markworks.dev@gmail.com", primary: true },
     { label: "LinkedIn", href: "https://linkedin.com/in/mark-hintz-builds", target: "_blank" }
   ],
 
@@ -202,6 +201,58 @@ const wordCycleData = [
 // ============================================
 // LUCID PORTFOLIO TEMPLATE - SCRIPT
 // ============================================
+
+// ============================================
+// SCRAMBLE TEXT EFFECT
+// ============================================
+function scrambleText(el, finalText, duration = 1200) {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@$%';
+  const frames = Math.floor(duration / 16);
+  let frame = 0;
+
+  function update() {
+    const progress = frame / frames;
+    const lockedChars = Math.floor(progress * finalText.length);
+    let display = '';
+    for (let i = 0; i < finalText.length; i++) {
+      if (finalText[i] === ' ') { display += ' '; continue; }
+      if (i < lockedChars) {
+        display += finalText[i];
+      } else {
+        display += chars[Math.floor(Math.random() * chars.length)];
+      }
+    }
+    el.textContent = display;
+    frame++;
+    if (frame <= frames) requestAnimationFrame(update);
+    else el.textContent = finalText;
+  }
+  requestAnimationFrame(update);
+}
+
+// ============================================
+// TYPEWRITER SPEC BLOCK
+// ============================================
+function typewriterBlock(containerEl) {
+  const lines = containerEl.querySelectorAll('.spec-line');
+  // Hide all lines initially
+  lines.forEach(line => {
+    line.style.opacity = '0';
+    line.style.transform = 'translateX(-8px)';
+    line.style.transition = 'none';
+  });
+
+  let delay = 0;
+  const lineDelay = 180;
+  lines.forEach((line, index) => {
+    setTimeout(() => {
+      line.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      line.style.opacity = '1';
+      line.style.transform = 'translateX(0)';
+    }, delay);
+    delay += lineDelay;
+  });
+}
 
 // ============================================
 // LENIS SMOOTH SCROLL (PREMIUM)
@@ -491,36 +542,63 @@ function initializePortfolio() {
     
     // Check if title is an object (new format) or string (old format)
     if (typeof portfolioData.personal.title === 'object' && portfolioData.personal.title.line1) {
-        line1.textContent = portfolioData.personal.title.line1;
-        line2.textContent = portfolioData.personal.title.line2;
-        
-        // Trigger animations
+        const finalLine1 = portfolioData.personal.title.line1;
+        const finalLine2 = portfolioData.personal.title.line2;
+
+        // Trigger super header animation
         setTimeout(() => {
             superHeader.classList.add('animate');
-            line1.classList.add('animate');
-            line2.classList.add('animate');
         }, 100);
+
+        // Scramble effect on title lines (300ms delay, stagger line2)
+        setTimeout(() => {
+            scrambleText(line1, finalLine1, 1200);
+        }, 300);
+        setTimeout(() => {
+            scrambleText(line2, finalLine2, 1200);
+        }, 500);
+
+        // Ensure magnetic-text class doesn't conflict (clear it)
+        line1.classList.remove('magnetic-text-target', 'magnetic-text');
+        line2.classList.remove('magnetic-text-target', 'magnetic-text');
     } else {
         // Fallback for old string format
-        line1.textContent = portfolioData.personal.title || 'Title Line 1';
-        line2.textContent = 'Title Line 2';
+        const fallback1 = portfolioData.personal.title || 'Title Line 1';
+        setTimeout(() => { scrambleText(line1, fallback1, 1200); }, 300);
+        setTimeout(() => { scrambleText(line2, 'Title Line 2', 1200); }, 500);
+        line1.classList.remove('magnetic-text-target', 'magnetic-text');
+        line2.classList.remove('magnetic-text-target', 'magnetic-text');
     }
     
     document.getElementById('hero-subtitle').textContent = portfolioData.personal.bio;
     
     const heroActions = document.getElementById('hero-actions');
-    portfolioData.heroActions.forEach(action => {
-        const dot = document.createElement('div');
-        dot.className = 'hero-dot';
-        heroActions.appendChild(dot);
-        
+    portfolioData.heroActions.forEach((action, idx) => {
         const a = document.createElement('a');
         a.href = action.href;
-        a.className = 'hero-link';
+        a.className = action.primary ? 'hero-link hero-cta-primary' : 'hero-link';
         a.textContent = action.label;
         if (action.target) a.target = action.target;
         heroActions.appendChild(a);
     });
+
+    // Inject spec block after hero-actions
+    const heroSection = document.querySelector('.hero-section');
+    const specBlock = document.createElement('div');
+    specBlock.className = 'hero-spec-block';
+    specBlock.innerHTML = `
+      <div class="spec-line"><span class="spec-key">&gt; SPEC:</span> <span class="spec-val">Mark Hintz</span></div>
+      <div class="spec-line"><span class="spec-key">&gt; ROLE:</span> <span class="spec-val">Mechanical Designer + Automation Engineer</span></div>
+      <div class="spec-line"><span class="spec-key">&gt; TOL:</span> <span class="spec-val">&#177;0.0005&quot; | 15 YRS | JAX, FL</span></div>
+      <div class="spec-line"><span class="spec-key">&gt; STATUS:</span> <span class="spec-val spec-status available">AVAILABLE FOR WORK</span></div>
+      <div class="spec-line"><span class="spec-key">&gt; STACK:</span> <span class="spec-val">SolidWorks &middot; PDM &middot; Python &middot; AI Tooling</span></div>
+    `;
+    heroActions.insertAdjacentElement('afterend', specBlock);
+
+    // Trigger typewriter on spec block after a short delay
+    setTimeout(() => {
+        typewriterBlock(specBlock);
+    }, 800);
     
     // About section
     const aboutText = document.getElementById('about-text');
