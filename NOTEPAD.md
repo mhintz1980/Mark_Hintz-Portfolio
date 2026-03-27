@@ -127,6 +127,23 @@ Track of improvements made each session. Most recent first.
 
 ---
 
+## 2026-03-27 — Fix Truncated CSS Rule + Mobile Conversion Banner
+
+**What:** Found that `styles.css` was cut off mid-rule — `.conversion-sub` had no closing brace, color, or line-height defined. Fixed the truncation, then took the opportunity to add a missing mobile breakpoint for `.conversion-inner` (which used `padding: 0 80px` and a horizontal flex layout with no responsive fallback).
+
+**Changes made:**
+- Completed `.conversion-sub` rule: added `color: var(--text-muted)` and `line-height: 1.6`, closed the block
+- Added `@media (max-width: 768px)` for `.conversion-inner`: stacks vertically, reduces padding to `24px`, shrinks heading to `1.4rem`
+- Regenerated `css/styles.min.css` (28.8KB)
+
+**Why:** A missing closing brace is a CSS parse error that could cause all rules after it to silently fail. The mobile fix prevents the conversion banner from overflowing or rendering illegibly on phones.
+
+**Files changed:**
+- `css/styles.css` — fixed truncation + added mobile breakpoint
+- `css/styles.min.css` — regenerated
+
+---
+
 ## Plan / Backlog
 
 - [x] Compress JPG images — DONE (all converted to WebP)
@@ -134,4 +151,6 @@ Track of improvements made each session. Most recent first.
 - [x] Add `<meta name="description">` tag to index.html for SEO — DONE
 - [x] Minify CSS/JS for production — DONE
 - [x] Add favicon — DONE (SVG, hexagon + M letterform, cyan on navy)
-- [ ] Review mobile responsiveness in CSS
+- [x] Review mobile responsiveness in CSS — DONE (fixed conversion banner + CSS truncation bug)
+- [ ] Audit remaining CSS for any other incomplete/missing mobile breakpoints (hero section padding, contact-action-box on small screens)
+- [ ] Add `og:image` meta tag for social sharing preview
