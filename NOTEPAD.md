@@ -4,6 +4,24 @@ Track of improvements made each session. Most recent first.
 
 ---
 
+## 2026-03-27 — Minify CSS/JS for Production
+
+**What:** Generated minified versions of `styles.css` and `scripts.js` using clean-css-cli and terser. Updated `index.html` to reference the `.min.css` and `.min.js` files. Originals kept for editing.
+
+**Result:**
+- `css/styles.css` (41.1KB) → `css/styles.min.css` (28.6KB) — **30% reduction**
+- `js/scripts.js` (44.6KB) → `js/scripts.min.js` (26.6KB) — **40% reduction**
+- Combined savings: **~30KB** off page load
+
+**Files changed:**
+- `css/styles.min.css` (new)
+- `js/scripts.min.js` (new)
+- `index.html` — updated `<link>` and `<script>` to point to minified files
+
+**Note:** Edit the original `.css`/`.js` files, then re-minify before deploy.
+
+---
+
 ## 2026-03-27 — Final Asset Optimization: Remaining PNG/JPG to WebP
 
 **What:** Converted the last batch of case study and project images (24 files) from PNG/JPG to WebP.
@@ -89,6 +107,6 @@ Track of improvements made each session. Most recent first.
 - [x] Compress JPG images — DONE (all converted to WebP)
 - [x] Add `loading="lazy"` to gallery images in scripts.js renderer — DONE
 - [x] Add `<meta name="description">` tag to index.html for SEO — DONE
-- [ ] Minify CSS/JS for production
+- [x] Minify CSS/JS for production — DONE
 - [ ] Add favicon
 - [ ] Review mobile responsiveness in CSS

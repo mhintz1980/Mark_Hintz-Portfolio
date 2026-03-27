@@ -33,6 +33,23 @@
 
 ---
 
+## Sprint 7: Case Studies + Testimonials Rebuild
+**Status:** Complete
+**Changes:**
+- `portfolioData.caseStudies` in `js/scripts.js` updated to include `summary` objects (problem, solution, result) for each case study.
+- `portfolioData.testimonials` in `js/scripts.js` updated to include `score` for each testimonial.
+- `renderCaseStudies` function in `js/scripts.js` modified to display the problem/solution/result summary in a monospace block (`case-study-summary` class) and include a blueprint overlay (`blueprint-overlay` class) on image hover.
+- `renderTestimonials` function in `js/scripts.js` modified to include a quality score (`quality-score` class) and a "FIELD REPORT" pseudo-element for each card.
+- New CSS added to `styles.css` for `.case-study-summary`, `.case-study-summary .label`, `.testimonial-card`, `.testimonial-card::before`, and `.quality-score` to match the "precision instrument" aesthetic.
+- Staggered reveal applied to both sections using `reveal-ready` and `transitionDelay`.
+- Mobile responsiveness ensured for the new card styles.
+
+**Self-eval:** All sprint contract requirements satisfied. Case studies now feature technical documentation card style with problem/solution/result summaries in monospace. Case study images have a blueprint overlay on hover. Testimonials are styled as "Verified Inspection Reports" with reliability ratings. Staggered reveal is applied, and mobile layouts are clean.
+
+**Issues:** None. Clean execution.
+
+---
+
 ## Sprint 4: Projects Section Overhaul
 **Status:** Complete
 **Changes:**
