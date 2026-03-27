@@ -4,15 +4,31 @@
    LUCID PORTFOLIO TEMPLATE - STYLES
    ============================================ */
 
+/* CSS DESIGN TOKENS */
+:root {
+  --bg: #080A0E;
+  --surface: #0F1318;
+  --surface-raised: #161B23;
+  --accent-primary: #E07B39;
+  --accent-secondary: #3EC9C9;
+  --accent-dim: #1A3A3A;
+  --text-primary: #EEE9E1;
+  --text-muted: #5C6878;
+  --text-bright: #FFFFFF;
+  --grid-line: rgba(99, 120, 150, 0.07);
+  --border: rgba(99, 120, 150, 0.15);
+  --border-active: rgba(224, 123, 57, 0.4);
+  --font-heading: 'Rajdhani', 'Barlow Condensed', system-ui, sans-serif;
+  --font-body: 'Barlow', -apple-system, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Cascadia Code', monospace;
+}
+
 /* RESET & BASE */
 * {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-body);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 }
 
 html {
@@ -20,8 +36,9 @@ html {
 }
 
 body {
-  background-color: #050505; /* Darker, richer black */
-  color: #f2f2f2;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
   overflow-x: hidden;
   position: relative;
 }
@@ -56,14 +73,14 @@ body {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.4;
+  opacity: 0.25;
   animation: floatBlob 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glow-blob-1 {
   width: 600px;
   height: 600px;
-  background: #4c1d95; /* Deep Purple */
+  background: rgba(224, 123, 57, 0.6); /* Amber */
   top: -100px;
   left: -100px;
   animation-delay: 0s;
@@ -72,7 +89,7 @@ body {
 .glow-blob-2 {
   width: 500px;
   height: 500px;
-  background: #312e81; /* Indigo */
+  background: rgba(62, 201, 201, 0.4); /* Teal */
   bottom: -50px;
   right: -100px;
   animation-delay: -5s;
@@ -81,10 +98,10 @@ body {
 .glow-blob-3 {
   width: 400px;
   height: 400px;
-  background: #be185d; /* Pink/Magenta Accent */
+  background: rgba(224, 123, 57, 0.3); /* Warm amber secondary */
   top: 40%;
   left: 60%;
-  opacity: 0.2;
+  opacity: 0.25;
   animation-delay: -10s;
 }
 
@@ -96,6 +113,22 @@ body {
     transform: translate(40px, -40px) scale(1.1);
   }
 }
+
+/* ============================================
+   TYPOGRAPHY SYSTEM
+   ============================================ */
+h1, h2, h3, h4, h5, h6,
+.hero-title, .hero-name, .section-title, .section-header,
+.nav-logo, .floating-nav .nav-logo,
+.project-title, .case-study-title, .service-title {
+  font-family: var(--font-heading);
+  letter-spacing: 0.02em;
+}
+
+/* Rajdhani heading weight corrections */
+h1, .hero-title { font-weight: 700; }
+h2, .section-title { font-weight: 600; }
+h3 { font-weight: 500; }
 
 /* ============================================
    12-COLUMN GRID OVERLAY
@@ -196,7 +229,7 @@ body {
 }
 
 .hero-super-header {
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 14px;
   font-weight: 500;
   text-transform: uppercase;
@@ -382,7 +415,7 @@ body {
   transform: translateY(-8px) scale(1.01);
   background: rgba(40, 40, 40, 0.6);
   border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 40px rgba(76, 29, 149, 0.1); /* Subtle colored glow */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 40px rgba(224, 123, 57, 0.1); /* Subtle amber glow */
 }
 
 .project-image-container {
