@@ -44,62 +44,62 @@ const portfolioData = {
     {
       title: "PumpTracker (Production Scheduling + Capacity Planning)",
       category: "Internal tool • React/TypeScript • Firebase/Supabase",
-      image: "assets/images/img_001.webp",
+      image: "assets/images/pumptracker-hero.png",
       featured: true,
       outcome: "Eliminated manual scheduling — 30+ hrs/week recovered",
       tags: ["React", "TypeScript", "Supabase", "Firebase", "AI Workflows"],
       gallery: [
-        "assets/images/img_002.webp",
-        "assets/images/img_003.webp",
-        "assets/images/img_004.webp",
-        "assets/images/img_005.webp"
+        "assets/images/pumptracker-01.png",
+        "assets/images/pumptracker-02.png",
+        "assets/images/pumptracker-03.png",
+        "assets/images/pumptracker-04.png"
       ]
     },
     {
       title: "Pump Package Design System (Skids, Enclosures, Mounts, Lifting)",
       category: "Mechanical design • SolidWorks • DFM/DFA",
-      image: "assets/images/img_006.webp",
+      image: "assets/images/pump-package-hero.png",
       outcome: "Zero tolerance failures across 47-component assembly",
       tags: ["SolidWorks", "DFM/DFA", "GD&T", "Sheet Metal", "Weldments"],
       gallery: [
-        "assets/images/img_007.webp",
-        "assets/images/img_008.webp",
-        "assets/images/img_009.webp",
-        "assets/images/img_010.webp"
+        "assets/images/pump-package-01.webp",
+        "assets/images/pump-package-02.jpg",
+        "assets/images/pump-package-03.png",
+        "assets/images/pump-package-04.png"
       ]
     },
     {
       title: "Industrial Torque Wrench",
       category: "Mechanical design • Planetary gearboxes • Precision assemblies",
-      image: "assets/images/img_011.webp",
+      image: "assets/images/torque-wrench-hero.webp",
       outcome: "DFM review cut manufacturing cost by 22%",
       tags: ["SolidWorks", "Planetary Gearboxes", "Precision Machining", "DFM"],
       gallery: [
-        "assets/images/img_012.webp",
-        "assets/images/img_013.webp",
-        "assets/images/img_014.webp",
-        "assets/images/img_015.webp",
-        "assets/images/img_016.webp",
-        "assets/images/img_017.webp"
+        "assets/images/torque-wrench-01.png",
+        "assets/images/torque-wrench-02.jpg",
+        "assets/images/torque-wrench-03.jpg",
+        "assets/images/torque-wrench-04.jpg",
+        "assets/images/torque-wrench-05.png",
+        "assets/images/torque-wrench-06.png"
       ]
     },
     {
       title: "Renderings & Visualizations",
       category: "PhotoView 360 • SolidWorks Visualize • Product renders",
-      image: "assets/images/img_018.webp",
+      image: "assets/images/renderings-hero.webp",
       outcome: "Photorealistic renders — eliminated physical mockup cost",
       tags: ["PhotoView 360", "SolidWorks Visualize", "Keyshot", "HDRI"],
       gallery: [
-        "assets/images/img_019.webp",
-        "assets/images/img_020.webp",
-        "assets/images/img_021.webp",
-        "assets/images/img_022.webp",
-        "assets/images/img_023.webp",
-        "assets/images/img_024.webp",
-        "assets/images/img_025.webp",
-        "assets/images/img_026.webp",
-        "assets/images/img_027.webp",
-        "assets/images/img_028.webp"
+        "assets/images/rendering-01.webp",
+        "assets/images/rendering-02.jpg",
+        "assets/images/rendering-03.jpg",
+        "assets/images/rendering-04.webp",
+        "assets/images/rendering-05.jpg",
+        "assets/images/rendering-06.jpg",
+        "assets/images/rendering-07.jpg",
+        "assets/images/rendering-08.webp",
+        "assets/images/rendering-09.webp",
+        "assets/images/rendering-10.webp"
       ]
     }
   ],
@@ -152,17 +152,17 @@ const portfolioData = {
     {
       title: "Reliability Engineering: Extending Asset Lifecycle from 3 to 5 Years",
       description: "Solving the 'grinding paste' failure mode with tribopolymer materials and predictive IoT monitoring",
-      image: "assets/images/img_029.webp"
+      image: "assets/images/case-study-asset-lifecycle.png"
     },
     {
       title: "Designing the Future of Practice: A Capabilities Deck",
       description: "Comprehensive portfolio demonstrating mechanical design expertise, DFM principles, and process optimization",
-      image: "assets/images/img_030.webp"
+      image: "assets/images/case-study-capabilities-deck.png"
     },
     {
       title: "Strategic Engineering Hire for Power Tee's Jacksonville Expansion",
       description: "20+ years of mechanical design excellence and AI-driven production innovation - a strategic fit for scaling operations",
-      image: "assets/images/img_031.webp"
+      image: "assets/images/case-study-power-tee.png"
     }
   ],
 
@@ -190,7 +190,7 @@ const portfolioData = {
 
   // FIXED CTA BUTTONS
   ctaButtons: [
-    { label: "View resume", href: "assets/images/img_032.webp", primary: true },
+    { label: "View resume", href: "assets/images/resume-preview.png", primary: true },
     { label: "View LinkedIn", href: "https://linkedin.com/in/mark-hintz-builds", primary: false, target: "_blank" }
   ],
 
