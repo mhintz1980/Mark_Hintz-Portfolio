@@ -4,6 +4,19 @@ Track of improvements made each session. Most recent first.
 
 ---
 
+## 2026-03-27 — Add ARIA Labels to Lightbox Controls
+
+**What:** Added `aria-label` attributes to the three lightbox navigation buttons (close, previous, next).
+
+**Why:** The buttons use symbolic characters (×, ❮, ❯) which are visually clear but provide no context to screen readers. Adding proper ARIA labels ensures assistive technology users can understand button functions, improving accessibility compliance and professional quality.
+
+**Files changed:**
+- `index.html` — Added `aria-label="Close lightbox"`, `aria-label="Previous image"`, and `aria-label="Next image"` to respective buttons
+
+**Impact:** Better accessibility for visually impaired users; aligns with WCAG 2.1 standards.
+
+---
+
 ## 2026-03-27 — Minify CSS/JS for Production
 
 **What:** Generated minified versions of `styles.css` and `scripts.js` using clean-css-cli and terser. Updated `index.html` to reference the `.min.css` and `.min.js` files. Originals kept for editing.
