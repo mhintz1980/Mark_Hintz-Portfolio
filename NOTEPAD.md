@@ -102,11 +102,23 @@ Track of improvements made each session. Most recent first.
 
 ---
 
+## 2026-03-27 — Add SVG Favicon
+
+**What:** Created `assets/favicon.svg` — a hexagon with an "M" letterform in electric cyan (`#00d4ff`) on a dark navy background. Wired it into `index.html` via `<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />`.
+
+**Why:** Modern browsers (Chrome, Firefox, Safari, Edge) all support SVG favicons natively. SVG scales perfectly at any resolution, is tiny (~546 bytes), and matches the portfolio's engineering/tech aesthetic. Without a favicon, the browser tab shows a blank page icon — unprofessional.
+
+**Files changed:**
+- `assets/favicon.svg` (new)
+- `index.html` — added `<link rel="icon">` tag
+
+---
+
 ## Plan / Backlog
 
 - [x] Compress JPG images — DONE (all converted to WebP)
 - [x] Add `loading="lazy"` to gallery images in scripts.js renderer — DONE
 - [x] Add `<meta name="description">` tag to index.html for SEO — DONE
 - [x] Minify CSS/JS for production — DONE
-- [ ] Add favicon
+- [x] Add favicon — DONE (SVG, hexagon + M letterform, cyan on navy)
 - [ ] Review mobile responsiveness in CSS
