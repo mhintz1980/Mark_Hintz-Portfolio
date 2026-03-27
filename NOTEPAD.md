@@ -144,6 +144,25 @@ Track of improvements made each session. Most recent first.
 
 ---
 
+## 2026-03-27 — Add Open Graph + Twitter Card Meta Tags
+
+**What:** Added a full Open Graph and Twitter Card meta block to `index.html`.
+
+**Tags added:**
+- `og:type` = website
+- `og:title` = "Mark Hintz — Mechanical Designer & Automation Engineer"
+- `og:description` = professional blurb
+- `og:image` = `assets/images/pump-package-hero.webp` (the hero pump package render)
+- `twitter:card` = summary_large_image
+- `twitter:title`, `twitter:description`, `twitter:image` (mirrored from og:*)
+
+**Why:** When the portfolio URL is shared on LinkedIn, Slack, Discord, Twitter, iMessage, etc., the platform scrapes these tags to build a rich preview card (title, description, thumbnail image). Without them, the link unfurls as a plain URL with no visual appeal. With the pump package hero image set as the OG image, shared links will show a compelling render right in the preview.
+
+**Files changed:**
+- `index.html` — added 8 meta tags between the description tag and favicon link
+
+---
+
 ## Plan / Backlog
 
 - [x] Compress JPG images — DONE (all converted to WebP)
@@ -153,4 +172,4 @@ Track of improvements made each session. Most recent first.
 - [x] Add favicon — DONE (SVG, hexagon + M letterform, cyan on navy)
 - [x] Review mobile responsiveness in CSS — DONE (fixed conversion banner + CSS truncation bug)
 - [ ] Audit remaining CSS for any other incomplete/missing mobile breakpoints (hero section padding, contact-action-box on small screens)
-- [ ] Add `og:image` meta tag for social sharing preview
+- [x] Add `og:image` meta tag for social sharing preview — DONE (full OG + Twitter Card block)
