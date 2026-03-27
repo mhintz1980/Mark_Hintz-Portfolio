@@ -605,6 +605,14 @@ function initializePortfolio() {
     if (aboutText && portfolioData.personal.about) {
         aboutText.textContent = portfolioData.personal.about;
     }
+
+    // About section scroll-reveal setup (will be observed in setupAnimations)
+    const aboutContent = document.querySelector('.about-content');
+    if (aboutContent) {
+        aboutContent.style.opacity = '0';
+        aboutContent.style.transform = 'translateY(24px)';
+        aboutContent.style.transition = 'opacity 0.7s ease-out, transform 0.7s ease-out';
+    }
     
     // Projects
     const projectsGrid = document.getElementById('projects-grid');
@@ -779,6 +787,33 @@ function setupAnimations() {
             fadeObserver.observe(el);
         }
     });
+
+    // About content scroll-reveal observer
+    const aboutContent = document.querySelector('.about-content');
+    if (aboutContent) {
+        const aboutRevealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    aboutRevealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        aboutRevealObserver.observe(aboutContent);
+    }
+
+    // Tolerance callout observer
+    const tolObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('tol-visible');
+                tolObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.tolerance-zone').forEach(el => tolObserver.observe(el));
 }
 
 // ============================================
