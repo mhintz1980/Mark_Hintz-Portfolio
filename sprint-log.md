@@ -1,5 +1,23 @@
 # Sprint Log
 
+## Sprint 5: Services + Conversion Layer
+**Status:** Complete
+**Changes:**
+- Services section overhauled to a 3-column grid layout (collapses to 1 on mobile)
+- Replaced placeholder services with 3 specialized freelance offerings: CAD Automation, AI Integration, and Design Review & DFM
+- Service cards feature engineering spec label treatment: Rajdhani headings, monospace subtitles, teal accents, and bulleted deliverables
+- Each service card includes a "Starting at" rate indicator and a clear CTA link
+- Persistent "Let's Talk Work" sticky CTA button added to desktop/mobile views, appearing after 50px scroll
+- Mid-page conversion banner injected between Services and Case Studies to drive project inquiries
+- Staggered scroll-reveal animation applied to service cards (100ms stagger)
+- Established CSS design tokens (:root) in `css/styles.css` for consistent branding
+
+**Self-eval:** All 7 sprint contract items satisfied. The freelance positioning is now much stronger with explicit services and rates. Sticky CTA and conversion banner create multiple paths for potential clients. Mobile responsiveness confirmed for the grid and sticky button. Committed and pushed to gh-pages.
+
+**Issues:** None. Clean execution.
+
+---
+
 ## Sprint 4: Projects Section Overhaul
 **Status:** Complete
 **Changes:**

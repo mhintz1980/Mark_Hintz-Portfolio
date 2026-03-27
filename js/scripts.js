@@ -107,22 +107,43 @@ const portfolioData = {
   // SERVICES
   services: [
     {
-      title: "Mechanical design that survives the shop floor",
-      description:
-        "SolidWorks assemblies: sheet metal weldments, engine mounts, industrial torque wrenches, lifting structures, and production-ready drawings that reduce rework, confusion, and tribal-knowledge dependency.",
-      tags: ["SolidWorks", "Sheet metal", "GD&T", "DFM/DFA"]
+      title: "CAD Automation",
+      subtitle: "SolidWorks · PDM · Design Tables",
+      description: "Stop doing manually what a macro can do in seconds. I build SolidWorks automation that eliminates repetitive tasks, enforces standards, and lets your engineers focus on engineering.",
+      deliverables: [
+        "SolidWorks macros & API automation",
+        "PDM Vault workflow optimization",
+        "Design Table systems & configurators",
+        "Drawing package automation"
+      ],
+      rate: "Starting at $85/hr · Fixed-price projects available",
+      cta: { label: "Get a quote →", href: "#contact" }
     },
     {
-      title: "Manufacturing documentation + release hygiene",
-      description:
-        "BOMs, fabrication drawings, DXFs/flat patterns, revision control, naming/part-number systems, and the boring-but-critical stuff that keeps production from face-planting.",
-      tags: ["BOMs", "PDM", "ASME prints", "DXF/CNC prep"]
+      title: "AI Integration",
+      subtitle: "Python · Claude SDK · Custom Tooling",
+      description: "The rare engineer who can build the AI tool AND understand the mechanical context it operates in. Custom agents, workflow automation, and intelligent tooling for engineering environments.",
+      deliverables: [
+        "Custom AI agents for engineering workflows",
+        "Natural language interfaces for CAD/PDM systems",
+        "Automated reporting & documentation",
+        "Intelligent design review tooling"
+      ],
+      rate: "Starting at $100/hr · Premium niche",
+      cta: { label: "Discuss your project →", href: "#contact" }
     },
     {
-      title: "Internal tools + automation (practical, not science-fair)",
-      description:
-        "Lightweight apps and automations that connect the dots between engineering, scheduling, purchasing, and production—so the team can see bottlenecks before they become late shipments.",
-      tags: ["React/TypeScript", "SQL", "Firebase/Supabase", "AI workflows"]
+      title: "Design Review & DFM",
+      subtitle: "SolidWorks · GD&T · Manufacturing Feedback",
+      description: "15+ years on the shop floor means I catch what CAD-only designers miss. DFM/DFA analysis, drawing package review, tolerance stack-up — delivered as actionable redlines.",
+      deliverables: [
+        "DFM/DFA analysis & redlines",
+        "GD&T review & correction",
+        "Tolerance stack-up analysis",
+        "Drawing package audit"
+      ],
+      rate: "Starting at $75/hr · Per-drawing packages available",
+      cta: { label: "Request a review →", href: "#contact" }
     }
   ],
 
@@ -706,23 +727,47 @@ function initializePortfolio() {
         card.classList.add('reveal-ready');
     });
     
-    // Services
+    // Services — new card layout (Sprint 5)
     const servicesContent = document.getElementById('services-content');
-    portfolioData.services.forEach(service => {
-        const item = document.createElement('div');
-        item.className = 'service-item';
-        
-        const tags = service.tags.map(tag => 
-            `<span class="service-tag">${tag}</span>`
+    portfolioData.services.forEach((service, i) => {
+        const card = document.createElement('div');
+        card.className = 'service-card reveal-ready';
+        card.style.transitionDelay = `${i * 100}ms`;
+
+        const deliverablesHTML = service.deliverables.map(d =>
+            `<li>${d}</li>`
         ).join('');
-        
-        item.innerHTML = `
-            <h3 class="service-title">${service.title}</h3>
+
+        card.innerHTML = `
+            <div>
+                <h3 class="service-title">${service.title}</h3>
+                <p class="service-subtitle">${service.subtitle}</p>
+            </div>
             <p class="service-description">${service.description}</p>
-            <div class="service-tags">${tags}</div>
+            <ul class="service-deliverables">${deliverablesHTML}</ul>
+            <div class="service-rate">${service.rate}</div>
+            <a class="service-cta" href="${service.cta.href}">${service.cta.label}</a>
         `;
-        servicesContent.appendChild(item);
+        servicesContent.appendChild(card);
     });
+
+    // Inject mid-page conversion banner after services section
+    const servicesSection = document.getElementById('services');
+    if (servicesSection && servicesSection.parentNode) {
+        const banner = document.createElement('div');
+        banner.className = 'conversion-banner';
+        banner.innerHTML = `
+            <div class="conversion-inner">
+                <div class="conversion-text">
+                    <p class="conversion-eyebrow">CURRENTLY ACCEPTING PROJECTS</p>
+                    <h3 class="conversion-heading">Got a CAD mess? Let's fix it.</h3>
+                    <p class="conversion-sub">SolidWorks automation · AI tooling · DFM review · Available now.</p>
+                </div>
+                <a href="#contact" class="conversion-cta">Start a conversation →</a>
+            </div>
+        `;
+        servicesSection.parentNode.insertBefore(banner, servicesSection.nextSibling);
+    }
 
 
     
@@ -839,8 +884,38 @@ function setupAnimations() {
         });
     }, fadeObserverOptions);
     
+    // Staggered reveal observer for service cards (Sprint 5)
+    const serviceRevealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                serviceRevealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.service-card.reveal-ready').forEach(card => {
+        serviceRevealObserver.observe(card);
+    });
+
+    // Sticky CTA visibility (Sprint 5)
+    const stickyCta = document.querySelector('.sticky-cta');
+    if (stickyCta) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                stickyCta.classList.add('visible');
+            } else {
+                stickyCta.classList.remove('visible');
+            }
+        }, { passive: true });
+
+        stickyCta.addEventListener('click', () => {
+            document.querySelector('#contact, [data-section="contact"]')?.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+
     // Animate content wrappers that aren't masked (e.g., subtitles, buttons)
-    document.querySelectorAll('.hero-subtitle, .hero-actions, .about-text, .service-item, .case-study-card, .testimonial-card').forEach((el, index) => {
+    document.querySelectorAll('.hero-subtitle, .hero-actions, .about-text, .case-study-card, .testimonial-card').forEach((el, index) => {
         // Only if not already handled by another animation class
         if (!el.classList.contains('animate')) {
             el.style.opacity = '0';
