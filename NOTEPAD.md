@@ -40,11 +40,26 @@ Track of improvements made each session. Most recent first.
 
 ---
 
+## 2026-03-27 — Add Meta Description Tag for SEO
+
+**What:** Added `<meta name="description">` tag to both `index.html` and `site/index.html`.
+
+**Content:**
+> "Mark Hintz — Mechanical designer and automation engineer specializing in SolidWorks, AI-driven tooling, and industrial system design. Based in Jacksonville, FL."
+
+**Why:** Without a description tag, search engines and link unfurls (LinkedIn, Slack, etc.) generate unpredictable previews. This locks in a clean, professional blurb.
+
+**Files changed:**
+- `index.html` — added meta description after viewport tag
+- `site/index.html` — same
+
+---
+
 ## Plan / Backlog
 
 - [x] Compress JPG images — DONE (all converted to WebP)
 - [ ] Add `loading="lazy"` to gallery images in scripts.js renderer
-- [ ] Add `<meta name="description">` tag to index.html for SEO
+- [x] Add `<meta name="description">` tag to index.html for SEO — DONE
 - [ ] Minify CSS/JS for production
 - [ ] Add favicon
 - [ ] Review mobile responsiveness in CSS
