@@ -2039,3 +2039,445 @@ h3 { font-weight: 500; }
     font-size: 1.4rem;
   }
 }
+
+/* ==========================================================
+   SPRINT 8: FINAL POLISH
+   Accessibility · Focus states · Contact section · Footer CTA
+   ========================================================== */
+
+/* ── Skip link ─────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 8px;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--accent-primary);
+  color: #000;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 8px;
+}
+
+/* ── Global focus-visible styles ───────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Remove default outline for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ── Hero title line 2 subtle offset ─────────────────── */
+.hero-title-offset {
+  /* Creates the two-line diagonal tension from the spec */
+  padding-left: clamp(0px, 3vw, 48px);
+}
+
+/* ── Availability badge (contact section) ───────────── */
+.availability-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent-primary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.availability-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-primary);
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: availability-pulse 2s infinite;
+  box-shadow: 0 0 0 0 rgba(224, 123, 57, 0.4);
+}
+@keyframes availability-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(224, 123, 57, 0.5); }
+  70%  { box-shadow: 0 0 0 8px rgba(224, 123, 57, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(224, 123, 57, 0); }
+}
+
+/* ── Contact section ─────────────────────────────────── */
+.contact-section {
+  padding: 120px 0 80px;
+  border-top: 1px solid var(--border);
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  padding-bottom: 80px;
+}
+
+.contact-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(180deg, #fff 0%, #aaa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.contact-description {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  max-width: 480px;
+  margin-bottom: 3rem;
+}
+
+/* Details card (left side) */
+.contact-details-card {
+  background: var(--surface-raised);
+  padding: 2rem;
+  border-left: 3px solid var(--accent-primary);
+  max-width: 420px;
+  position: relative;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  gap: 1rem;
+}
+.detail-row:last-child { border-bottom: none; }
+
+.detail-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: var(--accent-secondary);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.detail-value {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  text-align: right;
+  transition: color 0.2s;
+  word-break: break-word;
+}
+
+.detail-value:hover,
+.detail-value:focus-visible {
+  color: var(--accent-primary);
+}
+
+/* ── Contact form (right side) ───────────────────────── */
+.inquiry-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 2.5rem;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.inquiry-title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-bright);
+}
+
+.inquiry-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: -0.5rem;
+  line-height: 1.6;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-field label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-secondary);
+}
+
+.form-field select,
+.form-field textarea,
+.form-field input[type="email"] {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  padding: 0.75rem 1rem;
+  border-radius: 2px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  resize: vertical;
+}
+
+.form-field select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235C6878' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.form-field select:focus-visible,
+.form-field textarea:focus-visible,
+.form-field input[type="email"]:focus-visible {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px rgba(224, 123, 57, 0.2);
+  outline: none;
+}
+
+.form-field select option {
+  background: var(--surface-raised);
+  color: var(--text-primary);
+}
+
+.large-contact-button {
+  display: block;
+  width: 100%;
+  background: var(--accent-primary);
+  color: #000;
+  text-align: center;
+  padding: 1.1rem 2rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 0 20px rgba(224, 123, 57, 0.2);
+  /* Minimum tap target 48px */
+  min-height: 48px;
+}
+
+.large-contact-button:hover {
+  background: #f08c50;
+  box-shadow: 0 0 32px rgba(224, 123, 57, 0.4);
+}
+
+.large-contact-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 0 12px rgba(224, 123, 57, 0.2);
+}
+
+.copy-hint {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* ── Footer ─────────────────────────────────────────── */
+.footer-section {
+  border-top: 1px solid var(--border);
+  padding: 80px 0 60px;
+}
+
+.site-footer-cta {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text-bright);
+  margin-bottom: 3rem;
+  max-width: 1000px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-copyright {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.footer-credits {
+  display: flex;
+  gap: 24px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+
+/* ── Button active/press micro-interactions ────────── */
+.hero-link:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.hero-link.hero-cta-primary:active {
+  transform: translateY(2px);
+  box-shadow: 0 0 12px rgba(224, 123, 57, 0.2) !important;
+}
+
+.sticky-cta:active {
+  transform: translateY(1px);
+}
+
+.sticky-cta:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+/* ── Nav links enhanced focus + hover underline ───── */
+.nav-link:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* ── Lightbox button focus states ───────────────── */
+.lightbox-close:focus-visible,
+.lightbox-prev:focus-visible,
+.lightbox-next:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+}
+
+/* ── Testimonial card tap target ─────────────────── */
+.testimonial-card {
+  cursor: default;
+}
+
+/* ── Tap targets ≥48px on mobile ─────────────────── */
+@media (max-width: 768px) {
+  .hero-link {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .service-cta {
+    min-height: 44px;
+    align-items: center;
+  }
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .contact-details-card {
+    max-width: 100%;
+  }
+  .detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  .detail-value {
+    text-align: left;
+  }
+}
+
+/* ── 375px mobile edge ───────────────────────────── */
+@media (max-width: 375px) {
+  .content-wrapper {
+    padding: 0 16px;
+  }
+  .grid-container {
+    padding: 0 16px;
+  }
+  .hero-title-line {
+    font-size: 38px;
+  }
+  .hero-title-offset {
+    padding-left: 0;
+  }
+  .inquiry-panel {
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* ── Reduced-motion: contact form still works ─────── */
+@media (prefers-reduced-motion: reduce) {
+  .availability-dot {
+    animation: none;
+  }
+  .glow-blob {
+    animation: none;
+  }
+  .hero-super-header {
+    transition: none;
+  }
+}
+
+/* ── Conversion banner CTA link ─────────────────────── */
+.conversion-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.875rem 1.75rem;
+  background: var(--accent-primary);
+  color: #000;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-height: 48px;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+.conversion-cta:hover {
+  background: #f08c50;
+  transform: translateY(-1px);
+}
+.conversion-cta:active {
+  transform: translateY(1px);
+}
+.conversion-cta:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}

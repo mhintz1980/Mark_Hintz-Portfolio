@@ -864,16 +864,36 @@ function initializePortfolio() {
         });
     }
     
-    // Footer (Sprint 6 Update)
-    const contactTitle = document.querySelector('.contact-title');
-    if (contactTitle) contactTitle.textContent = "Ready to automate?";
-    
+    // Sprint 8 — contact section is already built in HTML.
+    // Just keep email/phone links correct from portfolioData.
     const copyEmail = document.getElementById('copy-email');
     if (copyEmail) {
         copyEmail.href = `mailto:${portfolioData.personal.email}`;
         copyEmail.textContent = portfolioData.personal.email;
     }
-    
+    const contactPhone = document.getElementById('contact-phone');
+    if (contactPhone && portfolioData.personal.phone) {
+        const phoneRaw = portfolioData.personal.phone.replace(/[^\d+]/g, '');
+        contactPhone.href = `tel:+1${phoneRaw}`;
+        contactPhone.textContent = portfolioData.personal.phone;
+    }
+
+    // Wire the contact form (mailto submit)
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const projectType = (contactForm.querySelector('#project-type')?.value || '').trim();
+            const summary    = (contactForm.querySelector('#project-summary')?.value || '').trim();
+            const from       = (contactForm.querySelector('#contact-method')?.value || '').trim();
+            const subject    = encodeURIComponent(`Technical Inquiry — ${projectType || 'Project'}`);
+            const body       = encodeURIComponent(
+                `Hi Mark,\n\nType: ${projectType}\n\n${summary}\n\nBest way to reach me: ${from}\n`
+            );
+            window.location.href = `mailto:${portfolioData.personal.email}?subject=${subject}&body=${body}`;
+        });
+    }
+
     const footerCopyright = document.getElementById('footer-copyright');
     if (footerCopyright) footerCopyright.textContent = portfolioData.personal.copyright;
     
@@ -892,38 +912,57 @@ function initializePortfolio() {
 // SETUP INTERACTIONS
 // ============================================
 function setupInteractions() {
-    // Copy Email to Clipboard (Sprint 6)
+    // Copy Email to Clipboard — click email link to copy, don't follow href
     const emailLink = document.getElementById('copy-email');
     if (emailLink) {
         emailLink.addEventListener('click', (e) => {
             e.preventDefault();
-            const email = emailLink.textContent;
-            navigator.clipboard.writeText(email).then(() => {
-                const originalText = emailLink.textContent;
-                emailLink.textContent = 'Copied to clipboard!';
-                emailLink.style.color = 'var(--accent-primary)';
-                setTimeout(() => {
-                    emailLink.textContent = originalText;
-                    emailLink.style.color = '';
-                }, 2000);
-            });
+            const email = portfolioData.personal.email;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(email).then(() => {
+                    showToast('Email copied to clipboard!');
+                }).catch(() => {
+                    window.location.href = `mailto:${email}`;
+                });
+            } else {
+                window.location.href = `mailto:${email}`;
+            }
         });
     }
 
-    // Ensure all #contact links use smooth scroll if Lenis is active
-    document.querySelectorAll('a[href="#contact"]').forEach(anchor => {
+    // Smooth scroll for all internal #hash links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+            const target = document.querySelector(href);
+            if (!target) return;
             e.preventDefault();
-            const target = document.querySelector('#contact');
-            if (target && typeof Lenis !== 'undefined') {
-                // If using Lenis (which should be globally available if initialized)
-                // We actually handled this in initializeLenis() generic listener
-                // but let's be explicit if needed.
-            } else if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-            }
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     });
+}
+
+// Light toast notification (no library needed)
+function showToast(msg) {
+    const existing = document.querySelector('.portfolio-toast');
+    if (existing) existing.remove();
+    const toast = document.createElement('div');
+    toast.className = 'portfolio-toast';
+    toast.textContent = msg;
+    toast.style.cssText = `
+        position:fixed; bottom:90px; left:50%; transform:translateX(-50%);
+        background:var(--accent-primary); color:#000;
+        font-family:var(--font-mono); font-size:0.75rem; letter-spacing:0.05em;
+        padding:0.6rem 1.2rem; border-radius:2px; z-index:9999;
+        animation:toastIn 0.3s ease forwards;
+        pointer-events:none;
+    `;
+    const style = document.createElement('style');
+    style.textContent = `@keyframes toastIn { from{opacity:0;transform:translateX(-50%) translateY(8px)} to{opacity:1;transform:translateX(-50%) translateY(0)} }`;
+    document.head.appendChild(style);
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 2500);
 }
 
 // ============================================
@@ -990,7 +1029,7 @@ function setupAnimations() {
         }, { passive: true });
 
         stickyCta.addEventListener('click', () => {
-            document.querySelector('#contact, [data-section="contact"]')?.scrollIntoView({ behavior: 'smooth' });
+            document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     }
 
