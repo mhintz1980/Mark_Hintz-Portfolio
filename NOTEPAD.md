@@ -163,6 +163,30 @@ Track of improvements made each session. Most recent first.
 
 ---
 
+## 2026-03-27 — Mobile Hero Section Padding Fix
+
+**What:** Added a responsive padding override for `.hero-section` inside the existing `@media (max-width: 640px)` breakpoint.
+
+**Before:** Hero used desktop padding (`120px` top/bottom) on all screen sizes — no mobile override existed.
+
+**After:**
+```css
+@media (max-width: 640px) {
+  .hero-section {
+    padding-top: 80px;
+    padding-bottom: 72px;
+  }
+}
+```
+
+**Why:** On phone-sized screens the 120px desktop padding consumed nearly 30% of viewport height before any content appeared, pushing CTA buttons below the fold. The 80/72px values give adequate breathing room while keeping more hero content visible on first load.
+
+**Files changed:**
+- `css/styles.css` — added `.hero-section` rule in `640px` breakpoint
+- `css/styles.min.css` — regenerated
+
+---
+
 ## Plan / Backlog
 
 - [x] Compress JPG images — DONE (all converted to WebP)
