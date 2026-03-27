@@ -35,7 +35,7 @@ const portfolioData = {
 
   // HERO ACTIONS
   heroActions: [
-    { label: "Let's Talk Work", href: "mailto:markworks.dev@gmail.com", primary: true },
+    { label: "Let's Talk Work", href: "#contact", primary: true },
     { label: "LinkedIn", href: "https://linkedin.com/in/mark-hintz-builds", target: "_blank" }
   ],
 
@@ -844,14 +844,14 @@ function initializePortfolio() {
         });
     }
     
-    // Footer
-    const footerCta = document.getElementById('footer-cta');
-    if (footerCta) footerCta.textContent = portfolioData.personal.footerCTA;
+    // Footer (Sprint 6 Update)
+    const contactTitle = document.querySelector('.contact-title');
+    if (contactTitle) contactTitle.textContent = "Ready to automate?";
     
-    const footerEmail = document.getElementById('footer-email');
-    if (footerEmail) {
-        footerEmail.href = `mailto:${portfolioData.personal.email}`;
-        footerEmail.textContent = portfolioData.personal.email;
+    const copyEmail = document.getElementById('copy-email');
+    if (copyEmail) {
+        copyEmail.href = `mailto:${portfolioData.personal.email}`;
+        copyEmail.textContent = portfolioData.personal.email;
     }
     
     const footerCopyright = document.getElementById('footer-copyright');
@@ -872,7 +872,38 @@ function initializePortfolio() {
 // SETUP INTERACTIONS
 // ============================================
 function setupInteractions() {
-    // Legacy scroll handler removed to allow CSS smooth-scroll or Lenis to handle it.
+    // Copy Email to Clipboard (Sprint 6)
+    const emailLink = document.getElementById('copy-email');
+    if (emailLink) {
+        emailLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const email = emailLink.textContent;
+            navigator.clipboard.writeText(email).then(() => {
+                const originalText = emailLink.textContent;
+                emailLink.textContent = 'Copied to clipboard!';
+                emailLink.style.color = 'var(--accent-primary)';
+                setTimeout(() => {
+                    emailLink.textContent = originalText;
+                    emailLink.style.color = '';
+                }, 2000);
+            });
+        });
+    }
+
+    // Ensure all #contact links use smooth scroll if Lenis is active
+    document.querySelectorAll('a[href="#contact"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector('#contact');
+            if (target && typeof Lenis !== 'undefined') {
+                // If using Lenis (which should be globally available if initialized)
+                // We actually handled this in initializeLenis() generic listener
+                // but let's be explicit if needed.
+            } else if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
 }
 
 // ============================================

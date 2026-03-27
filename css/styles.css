@@ -404,6 +404,11 @@ h3 { font-weight: 500; }
   animation: blink-status 1.2s step-end infinite;
 }
 
+.available {
+  color: var(--accent-primary) !important;
+  animation: blink-status 1.2s step-end infinite;
+}
+
 @keyframes blink-status {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.3; }
@@ -1018,38 +1023,99 @@ h3 { font-weight: 500; }
 }
 
 /* ============================================
-   FOOTER
+   FOOTER (Sprint 6 REBUILD)
    ============================================ */
 .footer-section {
   padding: 120px 0 80px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--border);
+  min-height: 60vh;
 }
 
-.footer-cta {
-  font-size: 110px; /* Massive footer text */
-  font-weight: 800;
-  letter-spacing: -0.05em;
-  line-height: 1.1; /* Increased from 0.9 to prevent clipping */
-  padding-bottom: 0.1em; /* Extra space for descenders */
-  margin-bottom: 64px;
-  max-width: 100%;
-  background: linear-gradient(180deg, #ffffff 0%, #666666 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.contact-container {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  padding-bottom: 80px;
 }
 
-.footer-email {
-  font-size: 24px;
-  color: rgba(255, 255, 255, 0.7);
+.contact-title {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-description {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 480px;
+  margin-bottom: 3rem;
+}
+
+.contact-details-card {
+  background: var(--surface-raised);
+  padding: 2rem;
+  border-left: 3px solid var(--accent-primary);
+  max-width: 400px;
+  position: relative;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.detail-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent-secondary);
+}
+
+.detail-value {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-primary);
   text-decoration: none;
-  display: inline-block;
-  margin-bottom: 80px;
   transition: color 0.2s;
 }
 
-.footer-email:hover {
-  color: #ffffff;
+.detail-value:hover {
+  color: var(--accent-primary);
+}
+
+.large-contact-button {
+  display: block;
+  width: 100%;
+  background: var(--accent-primary);
+  color: #000;
+  text-align: center;
+  padding: 2rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.large-contact-button:hover {
+  background: #f08c50;
+  transform: scale(1.02);
+}
+
+.inquiry-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 3rem;
+  text-align: center;
+}
+
+.copy-hint {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 1.5rem;
 }
 
 .footer-bottom {
@@ -1057,7 +1123,7 @@ h3 { font-weight: 500; }
   justify-content: space-between;
   align-items: center;
   padding-top: 40px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--border);
 }
 
 .footer-copyright {
@@ -1070,6 +1136,16 @@ h3 { font-weight: 500; }
   gap: 32px;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 900px) {
+  .contact-container { 
+    grid-template-columns: 1fr; 
+    gap: 3rem;
+  }
+  .contact-title {
+    font-size: 2.5rem;
+  }
 }
 
 /* ============================================
