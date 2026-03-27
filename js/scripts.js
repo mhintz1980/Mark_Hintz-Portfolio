@@ -1007,6 +1007,7 @@ function updateLightboxImage() {
     const counter = document.getElementById('lightbox-counter');
     
     img.src = currentGallery[currentIndex];
+    img.setAttribute('loading', 'lazy');
     counter.textContent = `${currentIndex + 1} / ${currentGallery.length}`;
     
     // Show/hide nav buttons based on gallery length

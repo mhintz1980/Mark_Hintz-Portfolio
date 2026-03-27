@@ -40,6 +40,18 @@ Track of improvements made each session. Most recent first.
 
 ---
 
+## 2026-03-27 — Performance: Added `loading="lazy"` to gallery images
+
+**What:** Added `loading="lazy"` attribute to project cards and lightbox image elements in `js/scripts.js` and `site/js/scripts.js`.
+
+**Why:** Improves initial page load performance and reduces data usage by only loading images as they are needed (when they enter the viewport or are viewed in the lightbox). This is especially important for portfolios with many high-quality renders.
+
+**Files changed:**
+- `js/scripts.js` — Added `loading="lazy"` to project card images and `img.setAttribute('loading', 'lazy')` to the lightbox updater.
+- `site/js/scripts.js` — Same.
+
+---
+
 ## 2026-03-27 — Add Meta Description Tag for SEO
 
 **What:** Added `<meta name="description">` tag to both `index.html` and `site/index.html`.
@@ -58,7 +70,7 @@ Track of improvements made each session. Most recent first.
 ## Plan / Backlog
 
 - [x] Compress JPG images — DONE (all converted to WebP)
-- [ ] Add `loading="lazy"` to gallery images in scripts.js renderer
+- [x] Add `loading="lazy"` to gallery images in scripts.js renderer — DONE
 - [x] Add `<meta name="description">` tag to index.html for SEO — DONE
 - [ ] Minify CSS/JS for production
 - [ ] Add favicon
