@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#080A0E" />
+    <meta name="theme-color" content="#F8F9FA" />
     <meta
       name="description"
       content="Mark Hintz — mechanical designer and automation engineer specializing in SolidWorks, CAD automation, AI tooling, and industrial system design. Based in Jacksonville, FL."
@@ -42,6 +42,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/cad-background.css" />
 
     <script type="application/ld+json">
       {
@@ -85,12 +86,7 @@
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <div class="bg-noise"></div>
-    <div class="bg-glows" aria-hidden="true">
-      <div class="glow-blob glow-blob-1 parallax-layer parallax-layer-1"></div>
-      <div class="glow-blob glow-blob-2 parallax-layer parallax-layer-2"></div>
-      <div class="glow-blob glow-blob-3 parallax-layer parallax-layer-3"></div>
-    </div>
+    <!-- CAD Background will be dynamically inserted here by cad-parallax.js -->
     <div class="grid-overlay" aria-hidden="true">
       <div class="grid-container">
         <div class="grid-line"></div>
@@ -326,5 +322,6 @@
     </div>
 
     <script src="js/scripts.js"></script>
+    <script src="js/cad-parallax.js"></script>
   </body>
 </html>
