@@ -12,6 +12,7 @@
     />
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/animations.css" rel="stylesheet" />
+    <link href="css/advanced-features.css" rel="stylesheet" />
   </head>
   <body>
     <div class="bg-noise"></div>
@@ -20,6 +21,7 @@
       <div class="glow-blob glow-blob-2 parallax-layer parallax-layer-2"></div>
       <div class="glow-blob glow-blob-3 parallax-layer parallax-layer-3"></div>
     </div>
+    <div class="bg-black-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000000; z-index: -1; opacity: 0; pointer-events: none; transition: opacity 0.5s ease;"></div>
     <div class="grid-overlay">
       <div class="grid-container">
         <div class="grid-line"></div>
@@ -37,9 +39,19 @@
       </div>
     </div>
     <nav class="floating-nav">
+      <div class="status-indicator">
+        <span class="status-dot"></span>
+        <span>Available</span>
+      </div>
       <div class="nav-logo" id="nav-logo"></div>
       <div class="nav-links" id="nav-links"></div>
+      <div class="nav-hamburger" id="nav-hamburger">
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+      </div>
     </nav>
+
     <div class="fixed-cta" id="fixed-cta"></div>
     <div class="content-wrapper">
       <section class="hero-section">
@@ -57,17 +69,46 @@
         </div>
         <div class="hero-actions" id="hero-actions"></div>
       </section>
+      <!-- 3D Flip Section -->
+      <section class="flip-section" id="flip-section">
+        <div class="flip-container">
+          <div class="flip-card">
+            <div class="flip-card-front">
+              <img src="assets/images/js_image_1.png" alt="Front" class="flip-image">
+            </div>
+            <div class="flip-card-back">
+              <img src="assets/images/js_image_6.png" alt="Back" class="flip-image">
+            </div>
+          </div>
+        </div>
+      </section>
       <section class="about-section" id="about">
         <div class="reveal-mask">
           <h2 class="section-title reveal-text">About</h2>
         </div>
         <p class="about-text" id="about-text"></p>
       </section>
-      <section class="projects-section" id="projects">
-        <div class="reveal-mask">
-          <h2 class="section-title reveal-text">Projects</h2>
+      <section class="projects-horiz-section" id="projects">
+        <!-- Intro Mask Section -->
+        <div class="projects-intro-mask" id="projects-intro-mask">
+          <div class="projects-mask-bg">
+             <!-- High-res images for mask fill injected here or background -->
+             <div class="mask-bg-image" style="background-image: url('assets/images/js_image_6.png'); top: 10%; left: 10%; width: 40%; height: 40%;"></div>
+             <div class="mask-bg-image" style="background-image: url('assets/images/js_image_1.png'); top: 40%; left: 50%; width: 35%; height: 35%;"></div>
+             <div class="mask-bg-image" style="background-image: url('assets/images/Totque_family.webp'); top: 60%; left: 10%; width: 50%; height: 40%;"></div>
+             <div class="mask-bg-image" style="background-image: url('assets/images/js_image_18.webp'); top: 5%; left: 60%; width: 30%; height: 30%;"></div>
+          </div>
+          <h2 class="projects-mask-text" id="projects-mask-text">PROJECTS</h2>
         </div>
-        <div class="projects-grid" id="projects-grid"></div>
+
+        <!-- Horizontal Scroll Wrapper -->
+        <div id="projects-horizontal-wrapper">
+          <!-- Projects injected by JS -->
+        </div>
+        
+        <!-- Gradient Edges -->
+        <div class="fade-edge-left"></div>
+        <div class="fade-edge-right"></div>
       </section>
       <section class="services-section" id="services">
         <div class="services-sticky">
@@ -83,11 +124,13 @@
         </div>
         <div class="case-studies-grid" id="case-studies-grid"></div>
       </section>
-      <section class="testimonials-section">
-        <div class="reveal-mask">
-          <h2 class="section-title reveal-text">Testimonials</h2>
+      <section class="testimonials-section" id="testimonials-section">
+        <!-- Horizontal Scroll Wrapper -->
+        <div class="testimonials-horiz-wrapper" id="testimonials-horiz-wrapper">
+             <div class="testimonials-scroll-track" id="testimonials-scroll-track">
+                 <!-- Testimonials injected by JS -->
+             </div>
         </div>
-        <div class="testimonials-grid" id="testimonials-grid"></div>
       </section>
       <!-- Skills Ticker Section -->
       <section class="ticker-section">
@@ -115,6 +158,10 @@
     </div>
     </div>
     <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
     <script src="js/scripts.js"></script>
   </body>
 </html>

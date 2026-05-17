@@ -207,7 +207,7 @@
 /* Apply gradient to individual characters for proper rendering */
 .text-cycle-word.active .cycle-char {
   /* Gradient text effect - applied to each character, not parent */
-  background: linear-gradient(90deg, #a78bfa 0%, #60a5fa 50%, #34d399 100%) !important;
+  background: linear-gradient(90deg, #0ea5e9 0%, #06b6d4 50%, #34d399 100%) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
