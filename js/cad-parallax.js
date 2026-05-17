@@ -9,7 +9,7 @@
 // ============================================
 const cadDrawings = {
   // Gear with teeth
-  gear: (function() {
+  gear: function() {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('viewBox', '0 0 300 300');
     svg.classList.add('cad-svg');
@@ -78,10 +78,10 @@ const cadDrawings = {
     svg.appendChild(vLine);
 
     return svg;
-  })(),
+  },
 
   // Bracket with mounting holes
-  bracket: (function() {
+  bracket: function() {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('viewBox', '0 0 250 200');
     svg.classList.add('cad-svg');
@@ -118,10 +118,10 @@ const cadDrawings = {
     });
 
     return svg;
-  })(),
+  },
 
   // Shaft with keyway
-  shaft: (function() {
+  shaft: function() {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('viewBox', '0 0 400 80');
     svg.classList.add('cad-svg');
@@ -160,10 +160,10 @@ const cadDrawings = {
     svg.appendChild(keyway);
 
     return svg;
-  })(),
+  },
 
   // Housing cross-section
-  housing: (function() {
+  housing: function() {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('viewBox', '0 0 350 250');
     svg.classList.add('cad-svg');
@@ -210,10 +210,10 @@ const cadDrawings = {
     svg.appendChild(hLine);
 
     return svg;
-  })(),
+  },
 
   // Tolerance zone indicator
-  toleranceZone: (function() {
+  toleranceZone: function() {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('viewBox', '0 0 120 80');
     svg.classList.add('cad-svg');
@@ -240,10 +240,10 @@ const cadDrawings = {
     svg.appendChild(line1);
 
     return svg;
-  })(),
+  },
 
   // Dimension detail
-  dimensionDetail: (function() {
+  dimensionDetail: function() {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('viewBox', '0 0 200 100');
     svg.classList.add('cad-svg');
@@ -278,7 +278,7 @@ const cadDrawings = {
     svg.appendChild(dimLine);
 
     return svg;
-  })
+  }
 };
 
 // ============================================
@@ -348,9 +348,12 @@ class CADParallaxBackground {
         const drawing = document.createElement('div');
         drawing.className = 'cad-drawing cad-' + drawingType;
 
-        // Clone the SVG node
+        // Get SVG node (call function or clone existing node)
         if (cadDrawings[drawingType]) {
-          drawing.appendChild(cadDrawings[drawingType].cloneNode(true));
+          const svgNode = typeof cadDrawings[drawingType] === 'function'
+            ? cadDrawings[drawingType]()
+            : cadDrawings[drawingType];
+          drawing.appendChild(svgNode.cloneNode(true));
         }
 
         const rotation = (Math.random() * 20 - 10).toFixed(1);
